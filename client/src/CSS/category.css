@@ -1,0 +1,16 @@
+
+
+add-category-form{
+    width: 100%;
+    background-color: orange;
+}
+
+render-category-container{
+    background-color: red;
+    padding: 100px;
+
+}
+
+category-container{
+    display: flex;
+}

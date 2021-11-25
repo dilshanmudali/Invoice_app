@@ -3,6 +3,7 @@
     background: #2F323A;
     margin-top: 70px;
     padding-top: 30px;
+     grid-column: 2/3;
     position: fixed;
     left: 0;
     width: 250px;
@@ -16,19 +17,21 @@
     display: block;
     width: 100%;
     line-height: 60px;
+    text-transform: uppercase;
     text-decoration: none;
     padding-left: 40px;
     box-sizing: border-box;
     transition: 0.5s;
-    transition-property: background;
+    transition-property: box-shadow;
 }
 
 .sidebar a:hover{
-    background: #19B3D3;
+    box-shadow: inset 3px 0px 0px 0px #b895f0;
+    color: #8c97f0;
 }
 
 .sidebar a span{
-    padding-left: 10px;
+    padding-left: 10px;   
 }
 
 header button .sidebar_btn{
@@ -42,13 +45,10 @@ header button .sidebar_btn{
     font-size: 24px;
 }
 
-header label .sidebar_btn:hover{
-    color: #19B3D3
+header button .sidebar_btn:hover{
+    color: #4355d6;
 }
   
-/* #check:checked ~ .sidebar{
-    left: -190px;
-} */
 
 .hidebar{
     left: -190px;
@@ -64,10 +64,11 @@ header label .sidebar_btn:hover{
     width: 80px;
 }
 
-.content{  
+main{  
     height: 100vh;
-    background-color: rgb(255, 255, 255);
+    background-color: #fff;
     transition: 0.5s;
+    grid-column: 1/3;
 }
 
 

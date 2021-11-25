@@ -1,5 +1,5 @@
-import '../../CSS/header.css';
-import '../../index.css'
+// import '../../CSS/header.css';
+// import '../../index.css'
 import {ImMenu} from 'react-icons/im';
 
 

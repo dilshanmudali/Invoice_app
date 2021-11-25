@@ -1,7 +1,9 @@
 import {useState} from "react";
-import './CSS/sidebar.css';
 import Navigation from './Components/Header/Navigation'
 import SideBar from './Components/Main/SideBar'
+import Home from './Components/Main/Home/Home'
+import AddCategory from './Components/Main/Category/AddCategory'
+import RenderCategory from './Components/Main/Category/RenderCategory'
 
 
 const App = () => {
@@ -10,13 +12,17 @@ const App = () => {
 
   return (
     <>
-      <Navigation setShowBar={setShowBar} />
-      <div className="container">
+      <div className='grid-container'>
+        <Navigation setShowBar={setShowBar} />
         <SideBar showbar={showbar}/>
-        <div style={showbar ? {marginLeft:'250px'} : {marginLeft:'60px'}} className='content'>
-            Hello
-        </div>
-      </div>  
+        <main style={showbar ? {marginLeft:'250px'} : {marginLeft:'60px'}}>
+            <Home />
+            <div className='category-container'>
+                <AddCategory />
+                <RenderCategory />
+            </div>
+        </main>
+      </div>
     </>
   );
 }
