@@ -1,4 +1,5 @@
 import React from 'react'
+import {NavLink} from 'react-router-dom'
 import {ImHome} from 'react-icons/im';
 import {BiCategory} from 'react-icons/bi';
 import {IoIosPeople} from 'react-icons/io'
@@ -12,11 +13,11 @@ const SideBar = ({showbar}) => {
         {/* <center>
 
         </center> */}
-        <a href='#'><ImHome /> <span>Home</span></a>
-        <a href='#'><BiCategory/> <span>Category</span></a>
-        <a href='#'><FiShoppingCart /> <span>Products</span></a>
-        <a href='#'><IoIosPeople /> <span>Customers</span></a>
-        <a href='#'><FaFileInvoiceDollar/> <span>Invoice</span></a>
+        <NavLink to='/' exact={true} activeClassName='is-active'><ImHome /> <span>Home</span></NavLink>
+        <NavLink to='/category' activeClassName='is-active'><BiCategory/> <span>Category</span></NavLink>
+        <NavLink to='/products' activeClassName='is-active'><FiShoppingCart /> <span>Products</span></NavLink>
+        <NavLink to='/customers' activeClassName='is-active'><IoIosPeople /> <span>Customers</span></NavLink>
+        <NavLink to='/orders' activeClassName='is-active'><FaFileInvoiceDollar/> <span>Invoice</span></NavLink>
     </div>
     )
 }

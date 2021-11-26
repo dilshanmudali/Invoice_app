@@ -64,13 +64,6 @@ header button .sidebar_btn:hover{
     width: 80px;
 }
 
-main{  
-    height: 100vh;
-    background-color: #fff;
-    transition: 0.5s;
-    grid-column: 1/3;
-}
-
 
 #check{
     display: none;
