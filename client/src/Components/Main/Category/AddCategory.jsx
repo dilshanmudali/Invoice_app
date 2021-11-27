@@ -1,8 +1,11 @@
 import React from 'react'
 import RenderCategory from './RenderCategory'
 
-const AddCategory = () => {
+const AddCategory = ({category}) => {
 
+    console.log(category.forEach(d => d.map(e => e.category_name)))
+
+    
 
     return (
         <div className='category-container'>            

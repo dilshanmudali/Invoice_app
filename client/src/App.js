@@ -13,18 +13,25 @@ function App(){
 
   const [user, setUser] = useState(null)
   const [showbar, setShowBar] = useState(true)
+  const [category, setCategory] = useState([])
 
-  useEffect(() =>{  
+  useEffect(() => {
+
     fetch('/me', {
     })
     .then(r => {
       if(r.ok) {
-        r.json().then(user => setUser(user)) 
+        r.json().then(user => {
+          setUser(user)
+          setCategory(user.categories)
+        }) 
       }
-    })
+    })   
   },[])
 
+  
   if(!user) return <Login onLogin={setUser}/>
+
 
   return (
     <>
@@ -32,25 +39,21 @@ function App(){
         <Navigation setShowBar={setShowBar} setUser={setUser}/>
         <SideBar showbar={showbar}/>
 
+        <main style={showbar ? {marginLeft:'250px'} : {marginLeft:'60px'}}>
         <Switch>
-          <main style={showbar ? {marginLeft:'250px'} : {marginLeft:'60px'}}>
-            <Route path='/' exact={true}>
-              <Home />   
-            </Route>       
+          
+            <Route path='/' exact={true} component={Home} />
             <Route path='/category'>
-                  <AddCategory />
+              <AddCategory category={category} />
             </Route>
-            <Route path='/products'>
-                  <Products />
-            </Route>
-            <Route path='/customers'>
-                  <Customers />
-            </Route>
-            <Route path='/orders'>
-                  <Invoice />
-            </Route>
-          </main>
+            <Route path='/products' component={Products}/>
+            <Route path='/customers' component={Customers}/>
+
+            <Route path='/orders' component={Invoice}/>
+
+          
         </Switch>
+        </main>
       </div>
     </>
   );

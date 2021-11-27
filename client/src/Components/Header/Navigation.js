@@ -1,5 +1,3 @@
-// import '../../CSS/header.css';
-// import '../../index.css'
 import {ImMenu} from 'react-icons/im';
 
 
@@ -16,7 +14,9 @@ const Navigation = ({setShowBar, setUser}) => {
     }
 
     return (
-        <header>          
+        
+        <header> 
+                     
             <button onClick={() => setShowBar(prevState => !prevState)} ><ImMenu className="sidebar_btn"/></button>
             <div className="left-area">
                 <h3>Store<span>Invo</span></h3>
@@ -24,7 +24,9 @@ const Navigation = ({setShowBar, setUser}) => {
             <div className="right-area">
                 <button onClick={handleLogOut} className="logout-btn">Logout</button>
             </div>
+            
         </header>
+        
     )
 }
 
