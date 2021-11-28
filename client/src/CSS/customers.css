@@ -1,0 +1,25 @@
+.customer-container{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.customer-form-container{
+    padding: 46px;
+    display: grid;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.render-customer-container{
+    background-color: rgb(224, 224, 224);
+    width: 50vw;
+    height: 72vh;
+    padding: 20px;
+    overflow-y: auto;
+    text-align: center;
+    font-size: 0.9rem;
+    background-color: white;
+    box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
+}

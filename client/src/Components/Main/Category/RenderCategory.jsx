@@ -5,7 +5,7 @@ import {RiChatDeleteLine} from 'react-icons/ri'
 const RenderCategory = ({category}) => {
     
     return (
-       <div className='render-category-container'>
+       <div className='render-products-container'>
            <table className='render-table'>
                <thead>
                    <tr>

@@ -43,3 +43,46 @@ main{
   box-shadow: inset 3px 0px 0px 0px #b895f0;
   color: #fc54fc;
 }
+
+
+
+.render-table{
+  width: 100%;
+  border-collapse: collapse;
+  padding: 50px;
+  text-align: left;
+  /* height: 100%; */
+  /* box-sizing: border-box; */
+}
+
+.render-table thead{
+  box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
+}
+
+.render-table thead th{
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: #261c35;
+}
+
+.render-table tbody td{
+  padding: 1rem 2rem;
+  font-size: 15px;
+}
+
+.render-table tbody tr:nth-child(even){
+  background-color: rgb(173 135 230 / 8%);;
+}
+
+.render-table tbody td button{
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;  
+  font-size: 1.8em; 
+  cursor: pointer;  
+  color: #48109cd9;
+  margin-right: 6px;
+}

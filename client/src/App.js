@@ -14,6 +14,7 @@ function App(){
   const [user, setUser] = useState(null)
   const [showbar, setShowBar] = useState(true)
   const [category, setCategory] = useState([])
+  const [products, setProducts] = useState([])
 
 
 // Initial user fetch
@@ -26,6 +27,7 @@ function App(){
           //set user/category
           setUser(user)
           setCategory(user.categories)
+          setProducts(user.products)
         }) 
       }
     })   
@@ -35,7 +37,7 @@ function App(){
   if(!user) return <Login onLogin={setUser}/>
 
   //1. setting new category
-  console.log(category)
+ 
 
   const submitCategory = newCategory => {
     fetch('/categories', {
@@ -64,7 +66,9 @@ function App(){
             <Route path='/category'>
               <AddCategory category={category} userId={user.id} submitCategory={submitCategory}/>
             </Route>
-            <Route path='/products' component={Products}/>
+            <Route path='/products'>
+              <Products products={products}/>
+            </Route>
             <Route path='/customers' component={Customers}/>
 
             <Route path='/orders' component={Invoice}/>
