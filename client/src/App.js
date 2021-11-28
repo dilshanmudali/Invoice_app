@@ -15,13 +15,15 @@ function App(){
   const [showbar, setShowBar] = useState(true)
   const [category, setCategory] = useState([])
 
-  useEffect(() => {
 
+// Initial user fetch
+  useEffect(() => {
     fetch('/me', {
     })
     .then(r => {
       if(r.ok) {
         r.json().then(user => {
+          //set user/category
           setUser(user)
           setCategory(user.categories)
         }) 
@@ -29,9 +31,25 @@ function App(){
     })   
   },[])
 
-  
+
   if(!user) return <Login onLogin={setUser}/>
 
+  //1. setting new category
+  console.log(category)
+
+  const submitCategory = newCategory => {
+    fetch('/categories', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(newCategory)
+    })
+    .then(r => r.json())
+    .then(newCategory => {
+      setCategory([...category, newCategory])
+      console.log(category)
+      console.log(newCategory)
+    })
+  }
 
   return (
     <>
@@ -44,7 +62,7 @@ function App(){
           
             <Route path='/' exact={true} component={Home} />
             <Route path='/category'>
-              <AddCategory category={category} />
+              <AddCategory category={category} userId={user.id} submitCategory={submitCategory}/>
             </Route>
             <Route path='/products' component={Products}/>
             <Route path='/customers' component={Customers}/>

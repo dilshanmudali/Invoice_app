@@ -1,32 +1,164 @@
 
-
-add-category-form{
-    width: 100%;
-    background-color: orange;
-}
-
-render-category-container{
-    background-color: red;
-    padding: 100px;
-
+.category-form-container{
+    padding: 46px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    
 }
 
 .category-container{
     margin-top: 50px;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-evenly;   
 }
 
 .add-category-form{
-    background-color: rgb(224, 224, 224);
-    padding: 40px;
-    width: 32%;
-    height: 50vh;
+    padding: 8px;
+    width: 19rem;
+    height: 36px;
+    
 }
 
-.render-category{
+.add-category-form input{  
+    width: 100%;
+    height: 100%;
+    background: rgb(248 248 251);
+    border-radius: 2rem;
+    border: 2px solid rgb(223, 223, 226);
+    font-family: inherit;
+    font-size: inherit;
+    text-align: center;
+    outline: none;
+    background-image:  linear-gradient(
+        180deg,#fff,#f5f5fa);
+    box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
+}
+
+
+.add-category-form input:hover{  
+    border-color: rgb(3, 3, 3);
+    transition: border-color 0.5s ease-in;
+}
+
+.add-category-form input:focus{  
+    border-color:rgb(170, 168, 207);
+    transition: border-color 0.5s ease;
+ }
+
+ .custom-field{
+     position: relative;
+     font-size: inherit;
+     padding-top: 20px;
+     margin-bottom: 5px;
+ }
+
+ .custom-field .placeholder{
+    position: absolute;
+    left: 12px;
+    top: calc(45% + 10px);
+    white-space: nowrap;
+    transform: translateY(-40%);
+    color: rgb(91, 111, 136);
+    transition: 
+        top 0.3s ease, 
+        font-size 0.3s ease, 
+        color 0.3s ease, 
+}
+
+.custom-field input:valid + .placeholder,
+.custom-field input:focus + .placeholder{
+   top: 20px;
+   font-size: 11px;
+   color: rgb(150, 137, 137);
+   
+}
+
+.add-category-form button{
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: 600;
+    color: rgb(72, 76, 122);
+    font-size: 14px;
+    height: 38px;
+    padding: 8px 24px;
+    border-radius: 50px;
+    background-image: linear-gradient(180deg,#fff,#f5f5fa);
+    box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
+    transition: all .2s ease-out;
+    margin-left:auto;
+    margin-right:0;
+
+    
+}
+
+.add-category-form button:hover{
+        box-shadow: 0 8px 22px 0 rgb(37 44 97 / 15%), 0 4px 6px 0 rgb(93 100 148 / 20%);
+}
+
+.category-form-container button{
+    display: flex;
+}
+
+
+.render-category-container{
     background-color: rgb(224, 224, 224);
     width: 35vw;
-    height: 77vh;
+    height: 72vh;
+    padding: 20px;
+    overflow-y: auto;
+    text-align: center;
+    font-size: 0.9rem;
+    background-color: white;
+    box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
+    /* display: grid;
+    justify-content: center;
+    align-items: center; */
 }
+
+.render-table{
+    width: 100%;
+    border-collapse: collapse;
+    padding: 50px;
+    text-align: left;
+    /* height: 100%; */
+    /* box-sizing: border-box; */
+}
+
+.render-table thead{
+    box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
+}
+
+.render-table thead th{
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: #261c35;
+}
+
+.render-table tbody td{
+    padding: 1rem 2rem;
+    font-size: 15px;
+}
+
+.render-table tbody tr:nth-child(even){
+    background-color: rgb(173 135 230 / 8%);;
+}
+
+.render-table tbody td button{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;  
+    font-size: 1.8em; 
+    cursor: pointer;  
+    color: #48109cd9;
+    margin-right: 6px;
+}
+
+

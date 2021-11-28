@@ -4,7 +4,8 @@ import { BrowserRouter as Router } from "react-router-dom"
 import './index.css';
 import './CSS/sidebar.css';
 import './CSS/header.css';
-import './CSS/category.css';
+import './CSS/category.css';  
+import './CSS/products.css';
 import './CSS/login.css'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
