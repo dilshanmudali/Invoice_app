@@ -2,7 +2,7 @@ import React from 'react'
 import {BiEdit} from 'react-icons/bi'
 import {RiChatDeleteLine} from 'react-icons/ri'
 
-const RenderProducts = ({products}) => {
+const RenderProducts = ({products, handleDelProd}) => {
     return (
         <div className='render-products-container'>
         <table className='render-table'>
@@ -25,7 +25,7 @@ const RenderProducts = ({products}) => {
                      <td >{prod.product_quantity}</td>
                      <td>
                          <button><BiEdit /></button>
-                         <button><RiChatDeleteLine /></button>
+                         <button onClick={() => handleDelProd(prod.id)}><RiChatDeleteLine /></button>
                          
                      </td>
                  </tr>

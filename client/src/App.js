@@ -15,6 +15,7 @@ function App(){
   const [showbar, setShowBar] = useState(true)
   const [category, setCategory] = useState([])
   const [products, setProducts] = useState([])
+  const [customers, setCustomers] = useState([])
 
 
 // Initial user fetch
@@ -28,6 +29,7 @@ function App(){
           setUser(user)
           setCategory(user.categories)
           setProducts(user.products)
+          setCustomers(user.customers)
         }) 
       }
     })   
@@ -48,8 +50,50 @@ function App(){
     .then(r => r.json())
     .then(newCategory => {
       setCategory([...category, newCategory])
-      console.log(category)
-      console.log(newCategory)
+    })
+  }
+
+  //setting new customer
+
+  const submitCustomer = newCustomer => {
+    fetch('/customers', {
+      method: 'POST',
+      headers: {'Content-Type' : 'application/json'},
+      body: JSON.stringify(newCustomer)
+    })
+    .then(r => r.json())
+    .then(newCustomer => {
+      setCustomers([...customers, newCustomer]);
+    })
+
+  }
+
+//Delete category/product/customer/order
+
+  const handleDelCategory = id => {
+    console.log(id)
+    fetch(`categories/${id}`, {
+      method: 'DELETE'
+    })
+    .then(() => {
+      const catLeft = category.filter(cato => cato.id !== id)
+      setCategory(catLeft)
+    })
+  }
+
+  const handleDelProd = id => {
+    fetch(`products/${id}`, {method: 'DELETE'})
+    .then(() => {
+      const prodLeft = products.filter(prod => prod.id !==id)
+      setProducts(prodLeft)
+    })
+  }
+
+  const handleDelcust = id => {
+    fetch(`customers/${id}`, {method: 'DELETE'})
+    .then(() => {
+      const custLeft = customers.filter(cust => cust.id !== id)
+      setCustomers(custLeft)
     })
   }
 
@@ -64,12 +108,15 @@ function App(){
           
             <Route path='/' exact={true} component={Home} />
             <Route path='/category'>
-              <AddCategory category={category} userId={user.id} submitCategory={submitCategory}/>
+              <AddCategory category={category} userId={user.id} submitCategory={submitCategory} handleDelCategory={handleDelCategory}/>
             </Route>
             <Route path='/products'>
-              <Products products={products}/>
+              <Products products={products} handleDelProd={handleDelProd}/>
             </Route>
-            <Route path='/customers' component={Customers}/>
+            <Route path='/customers'>
+              <Customers customers={customers} submitCustomer={submitCustomer}
+              userId={user.id} handleDelcust={handleDelcust}/>
+            </Route>
 
             <Route path='/orders' component={Invoice}/>
 

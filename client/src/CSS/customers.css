@@ -10,6 +10,7 @@
     display: grid;
     justify-content: center;
     font-size: 1.2rem;
+    box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
 }
 
 .render-customer-container{
@@ -22,4 +23,202 @@
     font-size: 0.9rem;
     background-color: white;
     box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
+}
+
+/* start  */
+
+.add-customer-form{
+    padding: 8px;
+    width: 19rem;
+    height: 36px;
+}
+
+.add-customer-form .customer-name{  
+    width: 98%;
+    height: 100%;
+    background: rgb(248 248 251);
+    border: 2px solid rgb(223, 223, 226);
+    font-family: inherit;
+    font-size: inherit;
+    text-align: center;
+    outline: none;
+    background-image:  linear-gradient(
+        180deg,#fff,#f5f5fa);
+    box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);;
+}
+
+
+.add-customer-form .customer-name:hover{  
+    border-color: rgb(3, 3, 3);
+    transition: border-color 0.5s ease-in;
+}
+
+.add-customer-form .customer-name:focus{  
+    border-color:rgb(170, 168, 207);
+    transition: border-color 0.5s ease;
+ }
+
+
+ .customer-custom-field{
+     position: relative;
+     font-size: inherit;
+     padding-top: 20px;
+     margin-bottom: 5px;
+ }
+
+ .customer-custom-field .customer-placeholder{
+    position: absolute;
+    left: 12px;
+    top: calc(45% + 10px);
+    white-space: nowrap;
+    transform: translateY(-40%);
+    color: rgb(91, 111, 136);
+    transition: 
+        top 0.3s ease, 
+        font-size 0.3s ease, 
+        color 0.3s ease, 
+}
+
+.customer-custom-field .customer-name:valid + .customer-placeholder,
+.customer-custom-field .customer-name:focus + .customer-placeholder{
+   top: 20px;
+   font-size: 11px;
+   color: rgb(150, 137, 137);  
+}
+
+.add-customer-form button{
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: 600;
+    color: rgb(72, 76, 122);
+    font-size: 14px;
+    height: 38px;
+    padding: 8px 24px;
+    border-radius: 50px;
+    background-image: linear-gradient(180deg,#fff,#f5f5fa);
+    box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
+    transition: all .2s ease-out;
+    margin-left:auto;
+    margin-right:0;
+
+    
+}
+
+.add-customer-form button:hover{
+    box-shadow: 0 8px 22px 0 rgb(37 44 97 / 15%), 0 4px 6px 0 rgb(93 100 148 / 20%);
+}
+
+.customer-form-container button{
+    display: flex;
+}
+
+
+/* contact  */
+
+.add-customer-form .customer-contact{  
+    width: 98%;
+    height: 100%;
+    background: rgb(248 248 251);
+    border: 2px solid rgb(223, 223, 226);
+    font-family: inherit;
+    font-size: inherit;
+    text-align: center;
+    outline: none;
+    background-image:  linear-gradient(
+        180deg,#fff,#f5f5fa);
+    box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
+    margin-top: 10px;
+}
+
+
+.add-customer-form .customer-contact:hover{  
+    border-color: rgb(3, 3, 3);
+    transition: border-color 0.5s ease-in;
+}
+
+.add-customer-form .customer-contact:focus{  
+    border-color:rgb(170, 168, 207);
+    transition: border-color 0.5s ease;
+ }
+
+ 
+ .customer-custom-field .customer-placeholder{
+    position: absolute;
+    left: 12px;
+    top: calc(45% + 10px);
+    white-space: nowrap;
+    transform: translateY(-40%);
+    color: rgb(91, 111, 136);
+    transition: 
+        top 0.3s ease, 
+        font-size 0.3s ease, 
+        color 0.3s ease, 
+}
+
+.customer-custom-field .customer-contact:valid + .customer-placeholder,
+.customer-custom-field .customer-contact:focus + .customer-placeholder{
+   top: 20px;
+   font-size: 11px;
+   color: rgb(150, 137, 137); 
+}
+
+small{
+    font-size: 11px;
+    color: #261c35;
+    padding: 13px;
+}
+
+/* Description */
+
+.customer-address-custom-field{
+    position: relative;
+    font-size: inherit;
+    padding-top: 20px;
+    margin-bottom: 5px;
+}
+
+.customer-address-custom-field textarea{
+    width: 98%;
+    height: 100%;
+    margin-top: -10px;
+    background: rgb(248 248 251);
+    border: 2px solid rgb(223, 223, 226);
+    font-family: inherit;
+    font-size: inherit;
+    text-align: center;
+    outline: none;
+    background-image:  linear-gradient(
+        180deg,#fff,#f5f5fa);
+    box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
+    resize: none;
+}
+
+.customer-address-custom-field textarea:hover{  
+    border-color: rgb(3, 3, 3);
+    transition: border-color 0.5s ease-in;
+}
+
+.customer-address-custom-field textarea:focus{  
+    border-color:rgb(170, 168, 207);
+    transition: border-color 0.5s ease;
+ }
+
+ .customer-address-custom-field .customer-address-placeholder{
+    position: absolute;
+    left: 12px;
+    top: calc(37% + 10px);
+    white-space: nowrap;
+    transform: translateY(-1%);
+    color: rgb(91, 111, 136);
+    transition: top 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+ }
+
+ .customer-address-custom-field textarea:valid + .customer-address-placeholder,
+.customer-address-custom-field textarea:focus + .customer-address-placeholder{
+   top: 30px;
+   font-size: 11px;
+   color: rgb(150, 137, 137);
+   
 }

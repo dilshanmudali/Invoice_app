@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import RenderCategory from './RenderCategory'
 
-const AddCategory = ({category, userId, submitCategory}) => {
+const AddCategory = ({category, userId, submitCategory, handleDelCategory}) => {
 
     const [addCategory, setAddCategory] = useState({
         "category_name": "",
@@ -44,7 +44,7 @@ const AddCategory = ({category, userId, submitCategory}) => {
                 </form>
             </div>     
             <div className='render-category'>
-                <RenderCategory category={category}/>
+                <RenderCategory category={category} handleDelCategory={handleDelCategory}/>
             </div>
         </div>
     )

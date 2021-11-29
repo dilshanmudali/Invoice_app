@@ -2,7 +2,7 @@ import React from 'react'
 import {BiEdit} from 'react-icons/bi'
 import {RiChatDeleteLine} from 'react-icons/ri'
 
-const RenderCategory = ({category}) => {
+const RenderCategory = ({category, handleDelCategory}) => {
     
     return (
        <div className='render-products-container'>
@@ -16,11 +16,11 @@ const RenderCategory = ({category}) => {
                 </thead>
                 <tbody>{category.map(cato => (
                     <tr key={cato.id}>
-                        <td >{cato.id+120}</td>
+                        <td >{cato.id}</td>
                         <td >{cato.category_name}</td>
                         <td>
                             <button><BiEdit /></button>
-                            <button><RiChatDeleteLine /></button>
+                            <button onClick={() => handleDelCategory(cato.id)}><RiChatDeleteLine /></button>
                             
                         </td>
                     </tr>

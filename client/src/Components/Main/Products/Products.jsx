@@ -1,7 +1,7 @@
 import React from 'react'
 import RenderProducts from './RenderProducts'
 
-const Products = ({products}) => {
+const Products = ({products, handleDelProd}) => {
     return (
         <div className='product-container'>  
         <div className='product-form-container'>     
@@ -67,7 +67,7 @@ const Products = ({products}) => {
             </form>
         </div>     
         <div className='render-product'>
-            <RenderProducts products={products}/>
+            <RenderProducts products={products} handleDelProd={handleDelProd}/>
         </div>
     </div>
     )
