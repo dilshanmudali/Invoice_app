@@ -13,13 +13,13 @@ class ProductsController < ApplicationController
     end
 
     def show 
-        customer = Customer.find(params[:id])
-        render json: customer, status: :ok
+        product = Product.find(params[:id])
+        render json: product, status: :ok
     end
 
     def destroy 
-        customer = Customer.find(params[:id])
-        customer.destroy
+        product = Product.find(params[:id])
+        product.destroy
     end
 
     private

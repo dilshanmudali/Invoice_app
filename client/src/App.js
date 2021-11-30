@@ -68,6 +68,20 @@ function App(){
 
   }
 
+
+  const submitProduct = newProduct => {
+    console.log(newProduct)
+    fetch('/products', {
+      method: 'POST',
+      headers: {'Content-Type' : 'application/json'},
+      body: JSON.stringify(newProduct)
+    })
+    .then(r => r.json())
+    .then(newProduct => {
+      setProducts([...products, newProduct])
+    })
+  }
+
 //Delete category/product/customer/order
 
   const handleDelCategory = id => {
@@ -81,10 +95,11 @@ function App(){
     })
   }
 
-  const handleDelProd = id => {
-    fetch(`products/${id}`, {method: 'DELETE'})
+  const handleDelProd = proId => {
+    console.log(proId)
+    fetch(`products/${proId}`, {method: 'DELETE'})
     .then(() => {
-      const prodLeft = products.filter(prod => prod.id !==id)
+      const prodLeft = products.filter(prod => prod.id !== proId)
       setProducts(prodLeft)
     })
   }
@@ -111,16 +126,14 @@ function App(){
               <AddCategory category={category} userId={user.id} submitCategory={submitCategory} handleDelCategory={handleDelCategory}/>
             </Route>
             <Route path='/products'>
-              <Products products={products} handleDelProd={handleDelProd}/>
+              <Products products={products} handleDelProd={handleDelProd} category={category} submitProduct={submitProduct} />
             </Route>
             <Route path='/customers'>
               <Customers customers={customers} submitCustomer={submitCustomer}
               userId={user.id} handleDelcust={handleDelcust}/>
             </Route>
 
-            <Route path='/orders' component={Invoice}/>
-
-          
+            <Route path='/orders' component={Invoice}/>        
         </Switch>
         </main>
       </div>

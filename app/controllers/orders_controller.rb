@@ -6,31 +6,31 @@ class OrdersController < ApplicationController
         render json: Order.all 
     end
 
-    # def create 
-    #     order = Order.create!(order_params) 
-    #     render json: order, status: :created
-    # end
+    def create 
+        order = Order.create!(order_params) 
+        render json: order, status: :created
+    end
 
-    # private
+    private
 
-    # def order_params
-    #     params.permit(:category_name)
-    # end
+    def order_params
+        params.permit(:category_name)
+    end
 
-    # def show 
-    #     customer = Customer.find(params[:id])
-    #     render json: customer, status: :ok
-    # end
+    def show 
+        order = Order.find(params[:id])
+        render json: order, status: :ok
+    end
 
-    # def destroy 
-    #     customer = Customer.find(params[:id])
-    #     customer.destroy
-    # end
+    def destroy 
+        order = Order.find(params[:id])
+        order.destroy
+    end
 
 
-    # private 
+    private 
 
-    # def order_params
-    #     params.permit()
-    # end
+    def order_params
+        params.permit()
+    end
 end
