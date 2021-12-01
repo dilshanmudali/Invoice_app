@@ -83,15 +83,16 @@ function App(){
   }
 
   const submitOrder = newOrder => {
-    fetch('/orders', {
-      method: 'POST',
-      headers: {'Content-Type' : 'application/json'},
-      body: JSON.stringify(newOrder)
-    })
-    .then(r => r.json())
-    .then(newOrder => {
-      setOrders([...orders, newOrder])
-    })
+    console.log(newOrder)
+    // fetch('/orders', {
+    //   method: 'POST',
+    //   headers: {'Content-Type' : 'application/json'},
+    //   body: JSON.stringify(newOrder)
+    // })
+    // .then(r => r.json())
+    // .then(newOrder => {
+    //   setOrders([...orders, newOrder])
+    // })
   }
 
 //Delete category/product/customer/order

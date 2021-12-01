@@ -3,6 +3,8 @@ import RenderOrders from './RenderOrders'
 
 const Invoice = ({customers, products, orders, submitOrder}) => {
 
+    
+
     //customer States
     const [customerSuggestion, setCustomerSuggestion] = useState([])
     const [customerInfo, setCustomerInfo] = useState({
@@ -19,12 +21,14 @@ const Invoice = ({customers, products, orders, submitOrder}) => {
         productPrice: '',
         productQuantity: ''
     })
-
+    const [total, setTotal] = useState(0)
     //new order state 
     const [newOrder, setNewOrder] = useState({
         "customer_id" : "",
         "product_id" : "",
-        "order_quantity" : ""
+        "order_quantity" : "",
+        "product_price" : "",
+        "order_total" : ""
     })
 
     //customer handlers
@@ -53,7 +57,6 @@ const Invoice = ({customers, products, orders, submitOrder}) => {
             ...newOrder, 
             customer_id : customerData.id
         })    
-        console.log(customerData.id)
         setCustomerSuggestion([])
     }
 
@@ -82,24 +85,33 @@ const Invoice = ({customers, products, orders, submitOrder}) => {
         })
         setNewOrder({
             ...newOrder, 
-            product_id : productData.id
+            product_id : productData.id,
+            product_price : productData.product_price,
+            order_total : total
         })
 
         setProductSuggestion([])
     }
 
+    
+    console.log(total)
+    const handleSubmit = (e) => {
+        e.preventDefault()      
+        console.log(total)
+        submitOrder(newOrder)
+    }
+
     //handle orders
-    const handleChange = e => {
+    const handleChange = e => {  
         setNewOrder({
             ...newOrder, 
             [e.target.name] : e.target.value
         })
+        const orderQuantity = newOrder.order_quantity
+        // e.target.children[9] ? setTotal(e.target.chilren[9] ) : null
+        setTotal(() => (productInfo.productPrice *  orderQuantity).toFixed(2)) 
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        submitOrder(newOrder)
-    }
 
     return (
         <div className="orders-container">
@@ -125,14 +137,18 @@ const Invoice = ({customers, products, orders, submitOrder}) => {
                     /> 
                     {productSuggestion && productSuggestion.map((suggestion) => <div onClick={() => onProductSuggest(suggestion)} key={suggestion.id}>{suggestion.product_name}</div>)}
                     <small>Product price: $ {productInfo.productPrice}</small>
+                    <div>Total: {total} </div>
                     <input type='number' 
                         placeholder='Product Quantity'
                         name="order_quantity"
+                        autoComplete = 'off' 
+                        required = {true}
+                        min="1" max={productInfo.productQuantity}
                         value={newOrder.order_quantity}
                         onChange = {handleChange}
                     />
                     <div>available quantity: {productInfo.productQuantity}</div>
-                    <div>Total: </div>
+                    
                    
                     <button>Add to Order</button>
                     <button>Clear Form</button>
