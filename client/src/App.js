@@ -16,7 +16,7 @@ function App(){
   const [category, setCategory] = useState([])
   const [products, setProducts] = useState([])
   const [customers, setCustomers] = useState([])
-
+  const [orders, setOrders] = useState([])
 
 // Initial user fetch
   useEffect(() => {
@@ -30,6 +30,7 @@ function App(){
           setCategory(user.categories)
           setProducts(user.products)
           setCustomers(user.customers)
+          setOrders(user.orders)
         }) 
       }
     })   
@@ -133,7 +134,9 @@ function App(){
               userId={user.id} handleDelcust={handleDelcust}/>
             </Route>
 
-            <Route path='/orders' component={Invoice}/>        
+            <Route path='/orders'>
+              <Invoice customers={customers} products={products} orders={orders}/>  
+            </Route>        
         </Switch>
         </main>
       </div>

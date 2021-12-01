@@ -57,6 +57,7 @@ const Products = ({products, handleDelProd, category, submitProduct }) => {
             "product_quantity" : "",
             "category_id" : ""
         })
+        setText('')
     }
 
   
@@ -114,16 +115,16 @@ const Products = ({products, handleDelProd, category, submitProduct }) => {
             <div 
             className='product-category-container'>
                 <label className='product-custom-field'>
-                <h6>Pick Category</h6>
-                <input onChange={(e) => textChange(e.target.value)}
-                name="text" 
-                type='text' 
-                autoComplete = 'off' 
-                value={text} 
-                placeholder="Search..."
-                className = "addCategory"
-                />
-                {suggestions && suggestions.map(suggestion => <div onClick={() => onSuggest(suggestion.category_name)} className="suggestions" key={suggestion.id}>{suggestion.category_name}</div>)}
+                    <h6>Pick Category</h6>
+                    <input onChange={(e) => textChange(e.target.value)}
+                    name="text" 
+                    type='text' 
+                    autoComplete = 'off' 
+                    value={text} 
+                    placeholder="Search..."
+                    className = "addCategory"
+                    />
+                    {suggestions && suggestions.map(suggestion => <div onClick={() => onSuggest(suggestion.category_name)} className="suggestions" key={suggestion.id}>{suggestion.category_name}</div>)}
                 </label>
             </div>        
             <div className='product-des-custom-field'>   

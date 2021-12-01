@@ -7,6 +7,7 @@ import './CSS/header.css';
 import './CSS/category.css';  
 import './CSS/products.css';
 import './CSS/customers.css';
+import './CSS/orders.css';
 import './CSS/login.css'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
