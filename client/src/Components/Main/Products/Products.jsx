@@ -26,11 +26,7 @@ const Products = ({products, handleDelProd, category, submitProduct }) => {
 
     const onSuggest = categoryName => {
         setText(categoryName);
-        category.forEach(cat => {
-            if(text === cat.category_name)
-                id = cat.id
-        })
-      
+
         let id = category.find(cat => cat.category_name === categoryName).id
         setNewProduct({
             ...newProduct, 

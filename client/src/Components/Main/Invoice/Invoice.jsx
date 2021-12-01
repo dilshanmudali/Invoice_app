@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import RenderOrders from './RenderOrders'
 
-const Invoice = ({customers, products}) => {
+const Invoice = ({customers, products, orders, submitOrder}) => {
 
     //customer States
     const [customerSuggestion, setCustomerSuggestion] = useState([])
@@ -18,6 +18,13 @@ const Invoice = ({customers, products}) => {
         productName: '',
         productPrice: '',
         productQuantity: ''
+    })
+
+    //new order state 
+    const [newOrder, setNewOrder] = useState({
+        "customer_id" : "",
+        "product_id" : "",
+        "order_quantity" : ""
     })
 
     //customer handlers
@@ -42,7 +49,11 @@ const Invoice = ({customers, products}) => {
             customerContact: customerData.customer_contact,
             customerAddress : customerData.customer_address
         })
-    
+        setNewOrder({
+            ...newOrder, 
+            customer_id : customerData.id
+        })    
+        console.log(customerData.id)
         setCustomerSuggestion([])
     }
 
@@ -64,18 +75,36 @@ const Invoice = ({customers, products}) => {
 
     const onProductSuggest = productData => {
         setProductInfo({
-            productId: productData.product_id,
+            productId: productData.id,
             productName: productData.product_name,
             productPrice: productData.product_price,
             productQuantity: productData.product_quantity
         })
+        setNewOrder({
+            ...newOrder, 
+            product_id : productData.id
+        })
+
         setProductSuggestion([])
+    }
+
+    //handle orders
+    const handleChange = e => {
+        setNewOrder({
+            ...newOrder, 
+            [e.target.name] : e.target.value
+        })
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        submitOrder(newOrder)
     }
 
     return (
         <div className="orders-container">
             <div className="orders-form-container">   
-                <form className="add-orders-form">
+                <form className="add-orders-form" onSubmit={handleSubmit}>
                     <input type='text'
                         placeholder='Customer Name'
                         autoComplete = 'off'
@@ -98,8 +127,9 @@ const Invoice = ({customers, products}) => {
                     <small>Product price: $ {productInfo.productPrice}</small>
                     <input type='number' 
                         placeholder='Product Quantity'
-                        // value={}
-
+                        name="order_quantity"
+                        value={newOrder.order_quantity}
+                        onChange = {handleChange}
                     />
                     <div>available quantity: {productInfo.productQuantity}</div>
                     <div>Total: </div>

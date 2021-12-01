@@ -71,7 +71,6 @@ function App(){
 
 
   const submitProduct = newProduct => {
-    console.log(newProduct)
     fetch('/products', {
       method: 'POST',
       headers: {'Content-Type' : 'application/json'},
@@ -80,6 +79,18 @@ function App(){
     .then(r => r.json())
     .then(newProduct => {
       setProducts([...products, newProduct])
+    })
+  }
+
+  const submitOrder = newOrder => {
+    fetch('/orders', {
+      method: 'POST',
+      headers: {'Content-Type' : 'application/json'},
+      body: JSON.stringify(newOrder)
+    })
+    .then(r => r.json())
+    .then(newOrder => {
+      setOrders([...orders, newOrder])
     })
   }
 
@@ -135,7 +146,7 @@ function App(){
             </Route>
 
             <Route path='/orders'>
-              <Invoice customers={customers} products={products} orders={orders}/>  
+              <Invoice customers={customers} products={products} orders={orders} submitOrder={submitOrder}/>  
             </Route>        
         </Switch>
         </main>
