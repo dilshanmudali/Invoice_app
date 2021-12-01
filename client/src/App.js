@@ -40,8 +40,6 @@ function App(){
   if(!user) return <Login onLogin={setUser}/>
 
   //1. setting new category
- 
-
   const submitCategory = newCategory => {
     fetch('/categories', {
       method: 'POST',
@@ -55,7 +53,6 @@ function App(){
   }
 
   //setting new customer
-
   const submitCustomer = newCustomer => {
     fetch('/customers', {
       method: 'POST',
@@ -66,7 +63,6 @@ function App(){
     .then(newCustomer => {
       setCustomers([...customers, newCustomer]);
     })
-
   }
 
 
@@ -82,17 +78,36 @@ function App(){
     })
   }
 
-  const submitOrder = newOrder => {
-    console.log(newOrder)
-    // fetch('/orders', {
-    //   method: 'POST',
-    //   headers: {'Content-Type' : 'application/json'},
-    //   body: JSON.stringify(newOrder)
-    // })
-    // .then(r => r.json())
-    // .then(newOrder => {
-    //   setOrders([...orders, newOrder])
-    // })
+  //handle order submit and update product quantity
+  const submitOrder = (newOrder, currentQuan) => {
+    const id = newOrder.product_id;
+    const newQuantity = newOrder.order_quantity;  
+    fetch('/orders', {
+      method: 'POST',
+      headers: {'Content-Type' : 'application/json'},
+      body: JSON.stringify(newOrder)
+    })
+    .then(r => r.json())
+    .then(newOrder => {
+      setOrders([...orders, newOrder])
+    })
+
+    fetch(`products/${id}`, {
+      method: 'PATCH',
+      headers: {'Content-Type' : 'application/json'},
+      body: JSON.stringify({product_quantity: currentQuan - newQuantity})
+    })
+    .then(r => r.json())
+    .then(updatedProd => {
+      const updateProdList = products.map(prod => {
+        if(prod.id === updatedProd.id){
+          return updatedProd
+        }else{
+          return prod
+        }
+      })
+      setProducts(updateProdList)
+    })
   }
 
 //Delete category/product/customer/order

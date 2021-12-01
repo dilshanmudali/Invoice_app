@@ -93,25 +93,45 @@ const Invoice = ({customers, products, orders, submitOrder}) => {
         setProductSuggestion([])
     }
 
-    
-    console.log(total)
-    const handleSubmit = (e) => {
-        e.preventDefault()      
-        console.log(total)
-        submitOrder(newOrder)
-    }
 
     //handle orders
-    const handleChange = e => {  
+    const handleChange = e => {
         setNewOrder({
             ...newOrder, 
-            [e.target.name] : e.target.value
+            [e.target.name] : e.target.value,
+            "order_total" : (parseFloat(productInfo.productPrice)*parseFloat(e.target.value))
         })
-        const orderQuantity = newOrder.order_quantity
-        // e.target.children[9] ? setTotal(e.target.chilren[9] ) : null
-        setTotal(() => (productInfo.productPrice *  orderQuantity).toFixed(2)) 
+        setTotal(() => (parseFloat(productInfo.productPrice) * parseFloat(e.target.value)).toFixed(2)) 
+    }
+    
+    
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const currentQuan = productInfo.productQuantity
+        submitOrder(newOrder, currentQuan)
     }
 
+    const handleClearForm = (e) => {
+        e.preventDefault()
+        setCustomerInfo({
+            customerId : '',
+            customerName: '',
+            customerContact : '',
+            customerAddress : ''})
+        setProductInfo({
+            productId: '',
+            productName: '',
+            productPrice: '',
+            productQuantity: ''
+        })
+        setNewOrder({
+            "customer_id" : "",
+            "product_id" : "",
+            "order_quantity" : "",
+            "product_price" : "",
+            "order_total" : ""})
+        setTotal(0)
+    }
 
     return (
         <div className="orders-container">
@@ -137,7 +157,6 @@ const Invoice = ({customers, products, orders, submitOrder}) => {
                     /> 
                     {productSuggestion && productSuggestion.map((suggestion) => <div onClick={() => onProductSuggest(suggestion)} key={suggestion.id}>{suggestion.product_name}</div>)}
                     <small>Product price: $ {productInfo.productPrice}</small>
-                    <div>Total: {total} </div>
                     <input type='number' 
                         placeholder='Product Quantity'
                         name="order_quantity"
@@ -147,11 +166,12 @@ const Invoice = ({customers, products, orders, submitOrder}) => {
                         value={newOrder.order_quantity}
                         onChange = {handleChange}
                     />
-                    <div>available quantity: {productInfo.productQuantity}</div>
-                    
+                    <div>available quantity: {productInfo.productQuantity - newOrder.order_quantity}</div>
+                    {/* <p>Quantity left: {productInfo.productQuantity - newOrder.order_quantity}</p> */}
+                    <div>Total: {total} </div>
                    
                     <button>Add to Order</button>
-                    <button>Clear Form</button>
+                    <button onClick={handleClearForm}>Clear Form</button>
                 </form>
             </div> 
             

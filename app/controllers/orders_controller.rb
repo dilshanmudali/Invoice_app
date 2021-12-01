@@ -11,12 +11,7 @@ class OrdersController < ApplicationController
         render json: order, status: :created
     end
 
-    private
-
-    def order_params
-        params.permit(:category_name)
-    end
-
+    
     def show 
         order = Order.find(params[:id])
         render json: order, status: :ok
