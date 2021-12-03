@@ -1,10 +1,11 @@
 import {useState} from 'react'
 import RenderOrders from './RenderOrders'
 
-const Invoice = ({customers, products, orders, submitOrder}) => {
+const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel}) => {
 
     
-
+    //hide/show customer input
+    const [customerInputVisible, setCustomerInputVisible] = useState(true)
     //customer States
     const [customerSuggestion, setCustomerSuggestion] = useState([])
     const [customerInfo, setCustomerInfo] = useState({
@@ -107,17 +108,13 @@ const Invoice = ({customers, products, orders, submitOrder}) => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
+        setCustomerInputVisible(false)
         const currentQuan = productInfo.productQuantity
         submitOrder(newOrder, currentQuan)
     }
 
     const handleClearForm = (e) => {
         e.preventDefault()
-        setCustomerInfo({
-            customerId : '',
-            customerName: '',
-            customerContact : '',
-            customerAddress : ''})
         setProductInfo({
             productId: '',
             productName: '',
@@ -125,7 +122,7 @@ const Invoice = ({customers, products, orders, submitOrder}) => {
             productQuantity: ''
         })
         setNewOrder({
-            "customer_id" : "",
+            "customer_id" : customerInfo.customerId,
             "product_id" : "",
             "order_quantity" : "",
             "product_price" : "",
@@ -137,21 +134,23 @@ const Invoice = ({customers, products, orders, submitOrder}) => {
         <div className="orders-container">
             <div className="orders-form-container">   
                 <form className="add-orders-form" onSubmit={handleSubmit}>
-                    <input type='text'
+                    {customerInputVisible ? 
+                    (    <input type='text'
                         placeholder='Customer Name'
                         autoComplete = 'off'
                         onChange={(e) => customerHandle(e.target.value)}
                         name = 'customer-name'
                         value = {customerInfo.customerName}
-                    />
+                        
+                    />) : <div>{customerInfo.customerName}</div> }
                     {customerSuggestion && customerSuggestion.map((suggestion) => <div onClick={() => onCustomerSuggest(suggestion)} key={suggestion.id}>{suggestion.customer_name}</div>)} 
-                        <div>customer id:{customerInfo.customerId}</div>
                         <div>customer contact:{customerInfo.customerContact}</div>
                         <div>customer address:{customerInfo.customerAddress}</div>
                         <br/>
 
                     <input type='text' 
                         placeholder='Product Name'
+                        required = {true}
                         onChange={(e) => productHandle(e.target.value)}
                         value={productInfo.productName}
                     /> 
@@ -176,7 +175,7 @@ const Invoice = ({customers, products, orders, submitOrder}) => {
             </div> 
             
              <div className='render-orders'>
-                <RenderOrders /> 
+                <RenderOrders orders={orders} customerInfo={customerInfo}  handleOrderCancel={ handleOrderCancel}/> 
             </div>
         </div>
     )

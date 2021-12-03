@@ -74,7 +74,7 @@ main{
 }
 
 .render-table tbody tr:nth-child(even){
-  background-color: rgb(173 135 230 / 8%);;
+  background-color: rgb(173 135 230 / 8%);
 }
 
 .render-table tbody td button{

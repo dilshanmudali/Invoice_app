@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
         render json: order, status: :created
     end
 
-    
+
     def show 
         order = Order.find(params[:id])
         render json: order, status: :ok
@@ -20,6 +20,17 @@ class OrdersController < ApplicationController
     def destroy 
         order = Order.find(params[:id])
         order.destroy
+    end
+
+    def delete_orders_with_customer_id
+        orders = Order.where(customer_id:params[:customer_id])
+        orders.each do |order| 
+            product = order.product
+            orderQuantity = order.order_quantity
+            updateQuantity = product.product_quantity + orderQuantity 
+            product.update(product_quantity: updateQuantity)
+        end
+        Order.where(customer_id:params[:customer_id]).destroy_all
     end
 
 

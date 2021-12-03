@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :categories
   resources :users
 
+  delete '/ordersAll/:customer_id', to: 'orders#delete_orders_with_customer_id'
+
   post '/signup', to: 'users#create'
   get '/me', to: 'users#show'
 

@@ -31,9 +31,11 @@ function App(){
           setProducts(user.products)
           setCustomers(user.customers)
           setOrders(user.orders)
+          
         }) 
       }
-    })   
+    })  
+     
   },[])
 
 
@@ -49,6 +51,7 @@ function App(){
     .then(r => r.json())
     .then(newCategory => {
       setCategory([...category, newCategory])
+     
     })
   }
 
@@ -80,6 +83,7 @@ function App(){
 
   //handle order submit and update product quantity
   const submitOrder = (newOrder, currentQuan) => {
+    console.log(newOrder)
     const id = newOrder.product_id;
     const newQuantity = newOrder.order_quantity;  
     fetch('/orders', {
@@ -140,6 +144,15 @@ function App(){
     })
   }
 
+  const handleOrderCancel = customerId => {
+    console.log(customerId)
+    fetch(`ordersAll/${customerId}`, {method: 'DELETE'})
+    .then(() => {
+      const orderLeft = orders.filter(ord => ord.customer_id !== customerId)
+      setOrders(orderLeft)
+    })
+  }
+
   return (
     <>
       <div className='grid-container'>
@@ -162,7 +175,8 @@ function App(){
             </Route>
 
             <Route path='/orders'>
-              <Invoice customers={customers} products={products} orders={orders} submitOrder={submitOrder}/>  
+              <Invoice customers={customers} products={products} orders={orders} submitOrder={submitOrder}
+               handleOrderCancel={ handleOrderCancel}/>  
             </Route>        
         </Switch>
         </main>
