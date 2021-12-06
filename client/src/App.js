@@ -8,7 +8,7 @@ import Customers from './Components/Main/Customers/Customers'
 import Products from './Components/Main/Products/Products'
 import Invoice from './Components/Main/Invoice/Invoice'
 import Login from './Auth/Login'
-import ShowPdf from './Components/Main/ShowPdf'
+import Transactions from './Components/Main/PDF/Transactions'
 
 function App(){
 
@@ -20,6 +20,7 @@ function App(){
   const [orders, setOrders] = useState([])
   const [ordersCopy, setOrdersCopy] = useState([])
   const [invoice, setInvoice] = useState([])
+  const [sessionInv, setSessionInv] = useState([])
 
 
 // Initial user fetch
@@ -100,12 +101,14 @@ function App(){
       setOrders([...orders, newOrder])
     })
 
+    setSessionInv(invId)
     // making order copy
     fetch('/orderdups', {
       method: 'POST',
       headers: {'Content-Type' : 'application/json'},
       body: JSON.stringify({
         ...newOrder,
+        complete: false,
         invoice_id : invId
       })
     })
@@ -136,7 +139,6 @@ function App(){
 //Delete category/product/customer/order
 
   const handleDelCategory = id => {
-    console.log(id)
     fetch(`categories/${id}`, {
       method: 'DELETE'
     })
@@ -182,6 +184,7 @@ function App(){
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
           ...invInfo,
+          complete : false,
         organization_name : user.organization_name
       })
     })
@@ -191,45 +194,41 @@ function App(){
     })
   }
 
-  // let productNames;
-  // let prodQuan;
-  // ordersCopy.forEach(ord => {
-  //   productNames = []
-  //   prodQuan = []
-  //   products.map(prod => {
-  //     if(prod.id === ord.product_id){
-  //       productNames.push(prod.product_name)
-  //       prodQuan.push(ord.order_quantity)
-  //     }
-  //   })
-  //   return productNames, prodQuan
-  // })
-
   const handleFinalize = (customerId,grandTotal) => {
    console.log(customerId, grandTotal)
-     
-    // console.log(productNames)
-    // fetch('/invoices', {
-    //   method: 'POST',
-    //   headers: {'Content-Type': 'application/json'},
-    //   body: JSON.stringify({
-    //     "customer_id" : customerId,
-    //     "grand_total": grandTotal,
-    //     "organization_name" : user.organization_name,
-    //   })
-    // })
-    // .then(r => r.json())
-    // .then(data => {
-    //   setInvoice([...invoice, data])
-    // })
-    
-    // console.log(customerId)
-    // fetch(`ordersFinal/${customerId}`, {method: 'DELETE'})
-    // .then(() => {
-    //   const orderLeft = orders.filter(ord => ord.customer_id !== customerId)
-    //   setOrders(orderLeft)
-    // })
+    if(sessionInv){
+      fetch(`/invoices/${sessionInv}`, {
+        method: 'PATCH',
+        headers: {'Content-Type' : 'application/json'},
+        body: JSON.stringify({complete: true})
+      })
+      .then(r => r.json())
+      .then(updateInv => {
+        const updateInvList = invoice.map(inv => {
+          if(inv.id === updateInv.id){
+            return updateInv;
+          }else{
+            return inv
+          }
+        })
+        setInvoice(updateInvList)
+      })
+    }
 
+    fetch(`/invoiceFalse`, {method: 'DELETE'})
+    .then(() => {
+      const invLeft = invoice.filter(inv => inv.customer_id !== customerId)
+      setInvoice(invLeft)
+    })
+   
+
+    console.log(customerId)
+    fetch(`ordersFinal/${customerId}`, {method: 'DELETE'})
+    .then(() => {
+      const orderLeft = orders.filter(ord => ord.customer_id !== customerId)
+      setOrders(orderLeft)
+    })
+    setSessionInv([])
   }
   return (
     <>
@@ -257,7 +256,7 @@ function App(){
                handleOrderCancel={ handleOrderCancel} handleFinalize={handleFinalize} submitInv={submitInv}invoice={invoice}/>  
             </Route>   
             <Route path='/pdf'>
-              <ShowPdf />  
+              <Transactions />  
             </Route>      
         </Switch>
         </main>

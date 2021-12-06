@@ -1,5 +1,5 @@
 // import React,{useState} from 'react'
-import {BiEdit} from 'react-icons/bi'
+// import {BiEdit} from 'react-icons/bi'
 
 function RenderOrders({orders, customerInfo,  handleOrderCancel, handleFinalize}) {
 
@@ -46,8 +46,7 @@ function RenderOrders({orders, customerInfo,  handleOrderCancel, handleFinalize}
                     <button onClick={() => handleFinalize(customerId,grandTotal)}>
                         Finalize
                     </button>
-                    <button onClick={() => handleOrderCancel(customerId)}>Cancel Invoice</button>
-                
+                    <button onClick={() => handleOrderCancel(customerId)}>Cancel Invoice</button>              
             </div>
         </div>
     )

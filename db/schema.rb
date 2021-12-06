@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2021_12_05_234750) do
     t.bigint "customer_id", null: false
     t.string "organization_name"
     t.integer "invoice_num"
+    t.boolean "complete", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_invoices_on_customer_id"

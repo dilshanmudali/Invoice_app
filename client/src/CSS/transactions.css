@@ -1,0 +1,157 @@
+.render-transactions-container{
+    padding: 46px;
+    width: 20vw;
+    display: grid;
+    align-content: space-between;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
+}
+
+.transactions-container{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;   
+     /* overflow-y: auto; */
+}
+
+/* .add-orders-form{
+    padding: 8px;
+    width: 19rem;
+    height: 36px;    
+} */
+
+.render-pdf-container{
+    background-color: rgb(155, 70, 70);
+    width: 50vw;
+    height: 72vh;
+    padding: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    background-color: white;
+    box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
+}
+
+.pdf-container{
+    width: 98%;
+    border: 2px solid #ececec;
+    overflow-y: hidden;
+    box-sizing: border-box;
+    height: 95%;
+}
+
+
+.print button{
+    cursor: pointer;
+    font-weight: 600;
+    color: rgb(72, 76, 122);
+    font-size: 13px;
+    padding: 5px 28px;
+    border-radius: 50px;
+    background-image: linear-gradient(
+        180deg,#fff,#cdcff0);
+    box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
+    transition: all .2s ease-out;
+    margin-left: auto;
+    display: flex;
+    margin-top: 8px;
+    margin-right: 15px;
+}
+
+.detail-container{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.detail-container div{
+    width: 31%;
+    height: 108px;
+    padding: 28px;
+    border: 1px solid #e9e6f2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.detail-container div h3{
+    color: #8e70d3;
+}
+.detail-container div span{
+    color: #afafaf;
+}
+
+.detail-container div h4{
+    color: #b1aeae;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+.detail-container div p{
+    color: #aaaaaa;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+.detail-container div h5{
+    color: #cec5c5;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+.inv-detail-container{
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.inv-detail-container div{
+    font-size: 17px;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.inv-table{
+    height: 41%;
+    width: 94%;
+    padding: 10px;
+    border-top: 1px solid #e2e1e1;
+    border-bottom: 1px dotted #e2e1e1;
+    margin-top: 22px;
+    font-size: 11px;
+}
+
+.inv-table thead tr{
+    background-color: #e5ddef;
+}
+
+.inv-tot-table-container{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 24px;
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.inv-table-total thead tr th{
+    background-color: #e5ddef;
+    padding: 10px;
+}
+
+/* //transactions */
+
+.transactions{
+    overflow-y: auto;
+}
+
+.transactions li{
+    text-decoration: none;
+    list-style: none;
+    margin: 2px;
+}
+
+.r-icon{
+    margin-right: 10px;
+    font-size: 15px;
+}

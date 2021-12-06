@@ -23,9 +23,9 @@ class OrderdupsController < ApplicationController
         orderdup.destroy
     end
 
-    def delete_orders_with_customer_id
-        Orderdup.where(customer_id:params[:customer_id]).destroy_all
-    end
+    # def delete_orders_with_customer_id
+    #     Orderdup.where(customer_id:params[:customer_id]).destroy_all
+    # end
 
 
     private 

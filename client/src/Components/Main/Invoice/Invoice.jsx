@@ -133,14 +133,16 @@ const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel, 
         setTotal(() => (parseFloat(productInfo.productPrice) * parseFloat(e.target.value)).toFixed(2)) 
     }
 
+    
     const handleSubmit = (e) => {
         e.preventDefault()  
         let invNum = parseInt(invoiceInfo.invoice_num)
         const invId = invoice.find(inv => inv.invoice_num === invNum).id
         const currentQuan = productInfo.productQuantity
         submitOrder(newOrder, currentQuan, invId)
+        console.log(invId)
     }
-
+   
     const handleClearForm = (e) => {
         e.preventDefault()
         setProductInfo({
