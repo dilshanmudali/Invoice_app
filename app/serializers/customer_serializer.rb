@@ -3,4 +3,6 @@ class CustomerSerializer < ActiveModel::Serializer
   has_one :user
   has_many :products
   has_many :orders
+  has_many :invoices
+  has_many :orderdups
 end

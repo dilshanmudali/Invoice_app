@@ -18,6 +18,7 @@ const SideBar = ({showbar}) => {
         <NavLink to='/products' activeClassName='is-active'><FiShoppingCart /> <span>Products</span></NavLink>
         <NavLink to='/customers' activeClassName='is-active'><IoIosPeople /> <span>Customers</span></NavLink>
         <NavLink to='/orders' activeClassName='is-active'><FaFileInvoiceDollar/> <span>Invoice</span></NavLink>
+        <NavLink to='/pdf' activeClassName='is-active'><FaFileInvoiceDollar/> <span>PDF</span></NavLink>
     </div>
     )
 }

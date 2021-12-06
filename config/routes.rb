@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
+  resources :invoices
+  resources :orderdups
   resources :orders
   resources :customers
   resources :products
   resources :categories
   resources :users
 
+  delete '/ordersFinal/:customer_id', to:'orders#delete_orders_with_customer_id_finalize'
   delete '/ordersAll/:customer_id', to: 'orders#delete_orders_with_customer_id'
+  delete '/ordersDup/:customer_id', to: 'orderdups#delete_orders_with_customer_id'
 
   post '/signup', to: 'users#create'
   get '/me', to: 'users#show'

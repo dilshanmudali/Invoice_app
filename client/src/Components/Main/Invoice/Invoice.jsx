@@ -1,11 +1,12 @@
 import {useState} from 'react'
 import RenderOrders from './RenderOrders'
 
-const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel}) => {
+const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel, handleFinalize, submitInv, invoice}) => {
 
     
     //hide/show customer input
     const [customerInputVisible, setCustomerInputVisible] = useState(true)
+    const [invoiceSetter, setInvoiceSetter] = useState(true)
     //customer States
     const [customerSuggestion, setCustomerSuggestion] = useState([])
     const [customerInfo, setCustomerInfo] = useState({
@@ -27,9 +28,17 @@ const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel})
     const [newOrder, setNewOrder] = useState({
         "customer_id" : "",
         "product_id" : "",
+        "product_name" : "",
         "order_quantity" : "",
         "product_price" : "",
         "order_total" : ""
+    })
+
+    //invoice state 
+    const [invoiceInfo, setInvoiceInfo] = useState({
+        "customer_id" : '',
+        "invoice_num" : '',
+        "organization_name" : '123Company'
     })
 
     //customer handlers
@@ -53,6 +62,10 @@ const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel})
             customerName: customerData.customer_name,
             customerContact: customerData.customer_contact,
             customerAddress : customerData.customer_address
+        })
+        setInvoiceInfo({
+            ...invoiceInfo,
+            customer_id: customerData.id
         })
         setNewOrder({
             ...newOrder, 
@@ -87,13 +100,28 @@ const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel})
         setNewOrder({
             ...newOrder, 
             product_id : productData.id,
+            product_name : productData.product_name,
             product_price : productData.product_price,
             order_total : total
         })
+        
 
         setProductSuggestion([])
     }
 
+    const handleInvoice = (invNum) => {
+        setInvoiceInfo({
+            invoice_num : invNum
+        })
+      
+    }
+
+    const handleInvoiceSubmit = (e) => {
+        e.preventDefault()
+        submitInv(invoiceInfo)
+        setCustomerInputVisible(false)
+        setInvoiceSetter(false)
+    }
 
     //handle orders
     const handleChange = e => {
@@ -104,13 +132,13 @@ const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel})
         })
         setTotal(() => (parseFloat(productInfo.productPrice) * parseFloat(e.target.value)).toFixed(2)) 
     }
-    
-    
+
     const handleSubmit = (e) => {
-        e.preventDefault()
-        setCustomerInputVisible(false)
+        e.preventDefault()  
+        let invNum = parseInt(invoiceInfo.invoice_num)
+        const invId = invoice.find(inv => inv.invoice_num === invNum).id
         const currentQuan = productInfo.productQuantity
-        submitOrder(newOrder, currentQuan)
+        submitOrder(newOrder, currentQuan, invId)
     }
 
     const handleClearForm = (e) => {
@@ -124,6 +152,7 @@ const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel})
         setNewOrder({
             "customer_id" : customerInfo.customerId,
             "product_id" : "",
+            "product_name" : "",
             "order_quantity" : "",
             "product_price" : "",
             "order_total" : ""})
@@ -133,21 +162,33 @@ const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel})
     return (
         <div className="orders-container">
             <div className="orders-form-container">   
+                <div className="invoice-number-form">
+                     <form onSubmit={handleInvoiceSubmit}>
+                        <div className="create-invoice-container">
+                            {invoiceSetter ? (
+                            <input type='number' placeholder='Invoice No'
+                            required={true} 
+                            onChange = {(e) => handleInvoice(e.target.value)}
+                            /> ) : <div>{invoiceInfo.invoice_num}</div>}
+                        </div>
+                                {customerInputVisible ? 
+                            (    <input type='text'
+                                placeholder='Customer Name'
+                                autoComplete = 'off'
+                                onChange={(e) => customerHandle(e.target.value)}
+                                name = 'customer-name'
+                                value = {customerInfo.customerName}
+                                
+                            />) : <div>{customerInfo.customerName}</div> }
+                            {customerSuggestion && customerSuggestion.map((suggestion) => <div onClick={() => onCustomerSuggest(suggestion)} key={suggestion.id}>{suggestion.customer_name}</div>)} 
+                                {/* <div>customer contact:{customerInfo.customerContact}</div>
+                                <div>customer address:{customerInfo.customerAddress}</div>
+                                 <br/> */}
+                            <button>Create Invoice</button>
+                     </form>
+                </div>
                 <form className="add-orders-form" onSubmit={handleSubmit}>
-                    {customerInputVisible ? 
-                    (    <input type='text'
-                        placeholder='Customer Name'
-                        autoComplete = 'off'
-                        onChange={(e) => customerHandle(e.target.value)}
-                        name = 'customer-name'
-                        value = {customerInfo.customerName}
-                        
-                    />) : <div>{customerInfo.customerName}</div> }
-                    {customerSuggestion && customerSuggestion.map((suggestion) => <div onClick={() => onCustomerSuggest(suggestion)} key={suggestion.id}>{suggestion.customer_name}</div>)} 
-                        <div>customer contact:{customerInfo.customerContact}</div>
-                        <div>customer address:{customerInfo.customerAddress}</div>
-                        <br/>
-
+                    
                     <input type='text' 
                         placeholder='Product Name'
                         required = {true}
@@ -165,7 +206,7 @@ const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel})
                         value={newOrder.order_quantity}
                         onChange = {handleChange}
                     />
-                    <div>available quantity: {productInfo.productQuantity - newOrder.order_quantity}</div>
+                    <div>available quantity: {productInfo.productQuantity? productInfo.productQuantity - newOrder.order_quantity : 0}</div>
                     {/* <p>Quantity left: {productInfo.productQuantity - newOrder.order_quantity}</p> */}
                     <div>Total: {total} </div>
                    
@@ -175,7 +216,8 @@ const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel})
             </div> 
             
              <div className='render-orders'>
-                <RenderOrders orders={orders} customerInfo={customerInfo}  handleOrderCancel={ handleOrderCancel}/> 
+                <RenderOrders orders={orders} customerInfo={customerInfo}  handleOrderCancel={ handleOrderCancel} handleFinalize={handleFinalize}
+               /> 
             </div>
         </div>
     )

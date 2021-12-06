@@ -33,10 +33,13 @@ class OrdersController < ApplicationController
         Order.where(customer_id:params[:customer_id]).destroy_all
     end
 
+    def delete_orders_with_customer_id_finalize
+        Order.where(customer_id:params[:customer_id]).destroy_all
+    end
 
     private 
 
     def order_params
-        params.permit(:customer_id, :product_id, :product_price, :order_quantity, :order_total)
+        params.permit(:customer_id, :product_id, :product_name, :product_price, :order_quantity, :order_total)
     end
 end
