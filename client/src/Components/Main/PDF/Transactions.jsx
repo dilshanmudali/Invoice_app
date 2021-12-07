@@ -25,12 +25,16 @@ const Transactions = () => {
         <div className='transactions-container'>   
             <div className='render-transactions-container'> 
                 <div className='transactions'>
-                    {invoice.map(inv => 
-                        <li 
-                            key={inv.id}>
-                                <button onClick={() => handleRender(inv.id)}> <RiBillLine className='r-icon' />{inv.invoice_num} </button>                  
-                        </li>
-                    )}
+                    <ul>
+                        {invoice.map(inv => 
+                            <li 
+                                key={inv.id}>
+                                    <span> <RiBillLine className='r-icon' />{inv.invoice_num} </span>
+                                    <span>{inv.customer.customer_name}</span>   
+                                    <button button onClick={() => handleRender(inv.id)}>View</button>      
+                            </li>
+                        )}
+                    </ul>
                 </div>    
             </div>     
             <div className='render-pdf'>

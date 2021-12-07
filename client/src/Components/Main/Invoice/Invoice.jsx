@@ -6,7 +6,6 @@ const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel, 
     
     //hide/show customer input
     const [customerInputVisible, setCustomerInputVisible] = useState(true)
-    const [invoiceSetter, setInvoiceSetter] = useState(true)
     //customer States
     const [customerSuggestion, setCustomerSuggestion] = useState([])
     const [customerInfo, setCustomerInfo] = useState({
@@ -37,7 +36,7 @@ const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel, 
     //invoice state 
     const [invoiceInfo, setInvoiceInfo] = useState({
         "customer_id" : '',
-        "invoice_num" : '',
+        "invoice_num" : Math.floor(100000 + Math.random()*9000000),
         "organization_name" : '123Company'
     })
 
@@ -109,18 +108,16 @@ const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel, 
         setProductSuggestion([])
     }
 
-    const handleInvoice = (invNum) => {
-        setInvoiceInfo({
-            invoice_num : invNum
-        })
-      
-    }
 
     const handleInvoiceSubmit = (e) => {
         e.preventDefault()
+        // let invNum = 
+        // setInvoiceInfo({
+        //     invoice_num : invNum
+        // })
+        console.log(invoiceInfo)
         submitInv(invoiceInfo)
         setCustomerInputVisible(false)
-        setInvoiceSetter(false)
     }
 
     //handle orders
@@ -142,6 +139,16 @@ const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel, 
         submitOrder(newOrder, currentQuan, invId)
         console.log(invId)
     }
+
+    const handleCancelInvo = () => {
+        console.log(invoiceInfo.invoice_num)
+        let invId = invoice.find(inv => inv.invoice_num === invoiceInfo.invoice_num).id
+        fetch(`invoices/${invId}`, {method: 'DELETE'})
+        setCustomerInfo({
+            customer_id: ""
+        })
+        setCustomerInputVisible(true)
+    }
    
     const handleClearForm = (e) => {
         e.preventDefault()
@@ -161,22 +168,25 @@ const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel, 
         setTotal(0)
     }
 
+    
+
     return (
         <div className="orders-container">
             <div className="orders-form-container">   
                 <div className="invoice-number-form">
                      <form onSubmit={handleInvoiceSubmit}>
                         <div className="create-invoice-container">
-                            {invoiceSetter ? (
+                            {/* {invoiceSetter ? (
                             <input type='number' placeholder='Invoice No'
                             required={true} 
                             onChange = {(e) => handleInvoice(e.target.value)}
-                            /> ) : <div>{invoiceInfo.invoice_num}</div>}
+                            /> ) : <div>{invoiceInfo.invoice_num}</div>} */}
                         </div>
                                 {customerInputVisible ? 
                             (    <input type='text'
                                 placeholder='Customer Name'
                                 autoComplete = 'off'
+                                required= {true}
                                 onChange={(e) => customerHandle(e.target.value)}
                                 name = 'customer-name'
                                 value = {customerInfo.customerName}
@@ -186,8 +196,10 @@ const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel, 
                                 {/* <div>customer contact:{customerInfo.customerContact}</div>
                                 <div>customer address:{customerInfo.customerAddress}</div>
                                  <br/> */}
+
                             <button>Create Invoice</button>
                      </form>
+                     <button onClick={handleCancelInvo}>Cancel</button>
                 </div>
                 <form className="add-orders-form" onSubmit={handleSubmit}>
                     

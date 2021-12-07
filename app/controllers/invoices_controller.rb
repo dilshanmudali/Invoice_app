@@ -12,7 +12,7 @@ class InvoicesController < ApplicationController
     end
 
     def destroy 
-        invoice = invoice.find(params[:id])
+        invoice = Invoice.find(params[:id])
         invoice.destroy
     end
 
