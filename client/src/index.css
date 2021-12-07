@@ -57,6 +57,7 @@ main{
 }
 
 .render-table thead{
+  background-color: #9266eb;
   box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
 }
 
@@ -66,7 +67,7 @@ main{
   letter-spacing: 0.1rem;
   font-size: 0.8rem;
   font-weight: 900;
-  color: #261c35;
+  color:white;
 }
 
 .render-table tbody td{
@@ -75,7 +76,7 @@ main{
 }
 
 .render-table tbody tr:nth-child(even){
-  background-color: rgb(173 135 230 / 8%);
+  background-color: #f3edff;
 }
 
 .render-table tbody td button{

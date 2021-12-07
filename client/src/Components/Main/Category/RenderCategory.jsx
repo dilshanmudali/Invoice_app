@@ -20,8 +20,7 @@ const RenderCategory = ({category, handleDelCategory}) => {
                         <td >{cato.category_name}</td>
                         <td>
                             <button><BiEdit /></button>
-                            <button onClick={() => handleDelCategory(cato.id)}><RiChatDeleteLine /></button>
-                            
+                            <button onClick={() => handleDelCategory(cato.id)}><RiChatDeleteLine /></button>                    
                         </td>
                     </tr>
                 ))

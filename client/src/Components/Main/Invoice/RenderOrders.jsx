@@ -12,25 +12,25 @@ function RenderOrders({orders, customerInfo,  handleOrderCancel, handleFinalize}
     console.log((grandTotal))
     return (
         <div className='render-orders-container'>
+            <div className='orders-table-container'>
             <table className='render-table'>
                 <thead>
                     <tr>
-                        <th>Product Id</th>
-                        <th>Product</th>
-                        <th>Product Quantity</th>
-                        <th>Product Price</th>
-                        <th>Total</th>
                         <th>customer id</th>
+                        <th>Product</th>
+                        <th>Product Price</th>
+                        <th>Product Quantity</th>                    
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>{orders.map(order => order.customer_id === customerId ? ((
                     <tr key={order.id}>
-                        <td >{order.product_id}</td>
+                        <td >{order.customer_id}</td>
                         <td >{order.product_name}</td>
-                        <td >{order.order_quantity}</td>
                         <td >$ {order.product_price}</td>
+                        <td >{order.order_quantity}</td>
                         <td >$ {order.order_total}</td>
-                        <td > {order.customer_id}</td>
+                        
 {/*     
                         <td>
                             <button><BiEdit /></button>    
@@ -41,12 +41,15 @@ function RenderOrders({orders, customerInfo,  handleOrderCancel, handleFinalize}
                     
                 </tbody>
             </table>
-            <div>${(grandTotal).toFixed(2)}</div>
-            <div className="invoice-button-container"> 
-                    <button onClick={() => handleFinalize(customerId,grandTotal)}>
-                        Finalize
-                    </button>
-                    <button onClick={() => handleOrderCancel(customerId)}>Cancel Invoice</button>              
+            </div>
+            
+            <div className="invoice-button-container">                      <div>
+                        <button onClick={() => handleFinalize(customerId,grandTotal)}>
+                            Finalize
+                        </button>
+                        <button onClick={() => handleOrderCancel(customerId)}>Cancel Invoice</button>     
+                    </div>   
+                    <div className="total-render">${(grandTotal).toFixed(2)}</div>       
             </div>
         </div>
     )

@@ -31,7 +31,7 @@ const Transactions = () => {
                                 key={inv.id}>
                                     <span> <RiBillLine className='r-icon' />{inv.invoice_num} </span>
                                     <span>{inv.customer.customer_name}</span>   
-                                    <button button onClick={() => handleRender(inv.id)}>View</button>      
+                                    <button onClick={() => handleRender(inv.id)}>View</button>      
                             </li>
                         )}
                     </ul>

@@ -137,7 +137,12 @@ const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel, 
         const invId = invoice.find(inv => inv.invoice_num === invNum).id
         const currentQuan = productInfo.productQuantity
         submitOrder(newOrder, currentQuan, invId)
-        console.log(invId)
+        setProductInfo({
+            productName: '',
+            productPrice: '',
+            productQuantity: ''
+        })
+        setTotal(0)
     }
 
     const handleCancelInvo = () => {
@@ -174,59 +179,87 @@ const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel, 
         <div className="orders-container">
             <div className="orders-form-container">   
                 <div className="invoice-number-form">
-                     <form onSubmit={handleInvoiceSubmit}>
-                        <div className="create-invoice-container">
-                            {/* {invoiceSetter ? (
-                            <input type='number' placeholder='Invoice No'
-                            required={true} 
-                            onChange = {(e) => handleInvoice(e.target.value)}
-                            /> ) : <div>{invoiceInfo.invoice_num}</div>} */}
-                        </div>
+                     <form onSubmit={handleInvoiceSubmit} 
+                     className="create-invoice-form">
                                 {customerInputVisible ? 
-                            (    <input type='text'
-                                placeholder='Customer Name'
-                                autoComplete = 'off'
-                                required= {true}
-                                onChange={(e) => customerHandle(e.target.value)}
-                                name = 'customer-name'
-                                value = {customerInfo.customerName}
-                                
-                            />) : <div>{customerInfo.customerName}</div> }
-                            {customerSuggestion && customerSuggestion.map((suggestion) => <div onClick={() => onCustomerSuggest(suggestion)} key={suggestion.id}>{suggestion.customer_name}</div>)} 
+                            (    
+                            <label className='invoice-custom-field'>
+                                <input type='text'
+                                    autoComplete = 'off'
+                                    required= {true}
+                                    onChange={(e) => customerHandle(e.target.value)}
+                                    name = 'customer-name'
+                                    value = {customerInfo.customerName}
+                                    />
+                                    <span className='customer-invoice-placeholder'>
+                                        Customer Name
+                                    </span>
+                                </label>
+                                ) 
+                                : <div className='customer-invoice-info'>{customerInfo.customerName}</div> }
+                                {customerSuggestion && customerSuggestion.map((suggestion) => <div onClick={() => onCustomerSuggest(suggestion)} key={suggestion.id}>{suggestion.customer_name}</div>)} 
                                 {/* <div>customer contact:{customerInfo.customerContact}</div>
                                 <div>customer address:{customerInfo.customerAddress}</div>
                                  <br/> */}
-
-                            <button>Create Invoice</button>
+                            {customerInputVisible ? (
+                            <button>Create Invoice</button>) : (
+                            <button onClick={handleCancelInvo}>Cancel</button>)}
                      </form>
-                     <button onClick={handleCancelInvo}>Cancel</button>
-                </div>
-                <form className="add-orders-form" onSubmit={handleSubmit}>
                     
-                    <input type='text' 
-                        placeholder='Product Name'
-                        required = {true}
-                        onChange={(e) => productHandle(e.target.value)}
-                        value={productInfo.productName}
-                    /> 
+                </div>
+                <div className="invoice-product-form-container">
+                <form className="add-orders-form" onSubmit={handleSubmit}>
+                    <label className='order-product-custom-field'>
+                        <input type='text' 
+                            className='order-name-input'
+                            required = {true}
+                            onChange={(e) => productHandle(e.target.value)}
+                            value={productInfo.productName}
+                        />
+                        <span className='order-product-placeholder'>
+                            Product Name
+                        </span> 
+                    </label>
                     {productSuggestion && productSuggestion.map((suggestion) => <div onClick={() => onProductSuggest(suggestion)} key={suggestion.id}>{suggestion.product_name}</div>)}
-                    <small>Product price: $ {productInfo.productPrice}</small>
-                    <input type='number' 
-                        placeholder='Product Quantity'
-                        name="order_quantity"
-                        autoComplete = 'off' 
-                        required = {true}
-                        min="1" max={productInfo.productQuantity}
-                        value={newOrder.order_quantity}
-                        onChange = {handleChange}
-                    />
-                    <div>available quantity: {productInfo.productQuantity? productInfo.productQuantity - newOrder.order_quantity : 0}</div>
-                    {/* <p>Quantity left: {productInfo.productQuantity - newOrder.order_quantity}</p> */}
-                    <div>Total: {total} </div>
-                   
+                        {productInfo.productPrice ?
+                        
+                        <div className="order-price-container"> $ {productInfo.productPrice}
+                        </div> : null }
+                    <div className="order-quantity-container">
+                        <div>
+                            {productInfo.productName? ((
+                            (<h6>Quantity</h6>) &&
+                            <input type='number' 
+                                name="order_quantity"
+                                autoComplete = 'off' 
+                                required = {true}
+                                min="1" max={productInfo.productQuantity}
+                                value={newOrder.order_quantity}
+                                onChange = {handleChange}
+                            />)) : null}
+                        </div>
+                        </div>
+                        <div className="total-container">
+                            <div>
+                                <h6>Av. Quan</h6>
+                                <div className='order-available-quan'>
+                                {productInfo.productQuantity? productInfo.productQuantity - newOrder.order_quantity : 0}
+                                </div>
+                            </div>
+                            <div className='available-container'>
+                                <h6>Total</h6>
+                                <div className='total-total'>$ {total? total : 0} 
+                                </div>
+                            </div>
+                           
+                        </div>
+                    
+                   <div className='form-btn-container'>
                     <button>Add to Order</button>
                     <button onClick={handleClearForm}>Clear Form</button>
+                    </div>
                 </form>
+                </div>
             </div> 
             
              <div className='render-orders'>
