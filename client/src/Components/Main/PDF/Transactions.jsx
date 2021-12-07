@@ -1,11 +1,15 @@
 import React,{useEffect, useState} from 'react'
 import RenderPDF from './RenderPDF'
 import {RiBillLine} from 'react-icons/ri'
+import Calendar from 'react-calendar'
+import 'react-calendar/dist/Calendar.css';
 
 const Transactions = () => {
 
     const [invoice, setInvoice] = useState([])
     const [filterData, setFilterData] = useState([])
+    const [invByDate, setInvByDate] = useState(invoice)
+    // const [date, setDate] = useState(new Date())
 
     useEffect(() => {
         fetch('/invoices')
@@ -16,17 +20,38 @@ const Transactions = () => {
         })
     },[])
 
+    const onChange = dateIn => {
+        // setDate(dateIn)
+        let options = {month:'2-digit', day:'2-digit', year:'numeric'}
+        const dateF = dateIn.toLocaleDateString('en-US', options)
+        const setInvoiceDate = invoice.filter(inv => {
+            let date = inv.created_at.slice(0,10).replaceAll('-','/')
+            let newDate = date.slice(5) + '/' + date.slice(0,4)
+            return newDate === dateF
+        })
+        setInvByDate(setInvoiceDate)
+    }
+   
     const handleRender = (invId) => {
-        let pdfData = invoice.filter(invo => invo.id === invId)
+        let pdfData = invByDate.filter(invo => invo.id === invId)
         setFilterData(pdfData)
     }
 
+    console.log(invByDate)
+    
     return (
         <div className='transactions-container'>   
             <div className='render-transactions-container'> 
+                <div className='search-transactions'>
+                    <Calendar 
+                        
+                        onChange={onChange}
+                        // value={date}
+                    />
+                </div>
                 <div className='transactions'>
                     <ul>
-                        {invoice.map(inv => 
+                        {invByDate.map(inv => 
                             <li 
                                 key={inv.id}>
                                     <span> <RiBillLine className='r-icon' />{inv.invoice_num} </span>

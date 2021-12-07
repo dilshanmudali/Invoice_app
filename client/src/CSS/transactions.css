@@ -165,8 +165,8 @@
 
 .transactions{
     overflow-y: auto;
-    height: 65vh;
-
+    /* height: 65vh; */
+    height: 38vh;
 }
 
 /* .transactions button{
