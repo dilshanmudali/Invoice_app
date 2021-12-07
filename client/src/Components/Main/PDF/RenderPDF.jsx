@@ -1,51 +1,51 @@
 import React from 'react'
 
-const RenderPDF = () => {
+const RenderPDF = ({filterData}) => {
 
-    
-    
-    return (
-        <div className='render-pdf-container'>
-            
-            <div className='pdf-container'>
+    const invoData = filterData.map(inv => {
+        return(                      
+            <div className='pdf-container' key={inv.id}>
                 <div className='detail-container'>
                     <div>
                         <h3>Store:</h3>
                         <span>From</span>
 
-                        <h2>Store Name</h2>
+                        <h2>{inv.organization_name}</h2>
                         <p>email.com</p>
                     </div>
                     <div>
                        <h3>Customer:</h3>
                        <span>To</span>
 
-                       <h2>Customer Name</h2>
-                       <p>123 way, road pkway blah blachblah</p>
-                       <h5>Contact: 123 455 512</h5>
+                       <h2>{inv.customer.customer_name}</h2>
+                       <p>{inv.customer.customer_address}</p>
+                       <h5>{inv.customer.customer_contact}</h5>
                     </div>
                 </div>
                 <div className='inv-detail-container'>
-                        <div>Invoice No: <span>1234</span></div>
+                        <div>Invoice No: <span>{inv.invoice_num}</span></div>
                         <div>Date: <span>12 05 2021</span></div>
                 </div>
-                <table className='inv-table'>
-                    <thead>
-                        <tr>
-                            <th>Product Name</th>
-                            <th>Product Quantity</th>
-                            <th>Product Price</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td ></td>
-                            <td ></td>
-                            <td ></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div className="inv-table-container">
+                    <table className='inv-table'>
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Product Quantity</th>
+                                <th>Product Price</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {inv.orderdups.map( i => <tr key={i.id}>
+                                <td >{i.product_name}</td>
+                                <td >{i.order_quantity}</td>
+                                <td >{i.product_price}</td>
+                                <td >$ {i.order_total}</td>
+                            </tr>)}
+                        </tbody>
+                    </table>
+                </div>
                 <div className='inv-tot-table-container'>
                 <table className='inv-table-total'>
                     <thead>
@@ -61,6 +61,12 @@ const RenderPDF = () => {
                 </table>
                 </div>
             </div>
+        )
+    })
+ 
+    return (
+        <div className='render-pdf-container'>
+            {invoData}
             <div className='print'>
                 <button>Print</button>
             </div>

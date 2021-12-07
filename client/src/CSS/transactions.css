@@ -2,6 +2,7 @@
     padding: 46px;
     width: 20vw;
     display: grid;
+    background-color: #fff;
     align-content: space-between;
     font-size: 1.2rem;
     box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
@@ -15,11 +16,6 @@
      /* overflow-y: auto; */
 }
 
-/* .add-orders-form{
-    padding: 8px;
-    width: 19rem;
-    height: 36px;    
-} */
 
 .render-pdf-container{
     background-color: rgb(155, 70, 70);
@@ -34,8 +30,8 @@
 
 .pdf-container{
     width: 98%;
-    border: 2px solid #ececec;
-    overflow-y: hidden;
+    /* border: 2px solid #ececec; */
+    overflow-y: auto;
     box-sizing: border-box;
     height: 95%;
 }
@@ -113,17 +109,33 @@
 }
 
 .inv-table{
-    height: 41%;
     width: 94%;
     padding: 10px;
     border-top: 1px solid #e2e1e1;
     border-bottom: 1px dotted #e2e1e1;
     margin-top: 22px;
-    font-size: 11px;
+    font-size: 13px;
+    border-collapse: collapse;
+    /* padding: 50px; */
+}
+
+.inv-table-container{
+    height: 41%;
 }
 
 .inv-table thead tr{
     background-color: #e5ddef;
+    height: 26px;
+}
+
+.inv-table tbody td{
+  font-size: 14px;
+  height: 26px;
+}
+
+  
+.inv-table tbody tr:nth-child(even){
+  background-color: rgb(173 135 230 / 8%);
 }
 
 .inv-tot-table-container{
@@ -137,7 +149,9 @@
 .inv-table-total thead tr th{
     background-color: #e5ddef;
     padding: 10px;
+   
 }
+
 
 /* //transactions */
 

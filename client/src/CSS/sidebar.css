@@ -1,6 +1,6 @@
 
 .sidebar{
-    background: #2F323A;
+    background: #9266eb;
     margin-top: 70px;
     padding-top: 30px;
      grid-column: 2/3;
@@ -13,7 +13,7 @@
 }
 
 .sidebar a{
-    color: #fff;
+    color: rgb(255, 255, 255);
     display: block;
     width: 100%;
     line-height: 60px;
@@ -23,11 +23,16 @@
     box-sizing: border-box;
     transition: 0.5s;
     transition-property: box-shadow;
+    background: linear-gradient(to right, white 50%, #9266eb 50%);
+    transition: 0.5s ease-in-out;
+    background-size: 200% 100%;
+    background-position: right bottom;
 }
 
 .sidebar a:hover{
-    box-shadow: inset 3px 0px 0px 0px #b895f0;
-    color: #8c97f0;
+    box-shadow: inset 3px 0px 0px 0px #ffffff;
+    color: #6c5ab9;
+    background-position: left bottom;
 }
 
 .sidebar a span{
@@ -36,7 +41,7 @@
 
 header button .sidebar_btn{
     z-index: 1;
-    color: #fff;
+    color: #9266eb;
     position: fixed;
     cursor: pointer;
     left: 254px;
@@ -46,7 +51,7 @@ header button .sidebar_btn{
 }
 
 header button .sidebar_btn:hover{
-    color: #4355d6;
+    color: #794ad8;
 }
   
 

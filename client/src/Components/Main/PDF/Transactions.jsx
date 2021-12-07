@@ -5,6 +5,7 @@ import {RiBillLine} from 'react-icons/ri'
 const Transactions = () => {
 
     const [invoice, setInvoice] = useState([])
+    const [filterData, setFilterData] = useState([])
 
     useEffect(() => {
         fetch('/invoices')
@@ -15,11 +16,11 @@ const Transactions = () => {
         })
     },[])
 
-    // let pdfData;
     const handleRender = (invId) => {
-        // let pdfData = invoice.filter(invo => invo.id === invId)
-        console.log(invId)
+        let pdfData = invoice.filter(invo => invo.id === invId)
+        setFilterData(pdfData)
     }
+
     return (
         <div className='transactions-container'>   
             <div className='render-transactions-container'> 
@@ -33,7 +34,7 @@ const Transactions = () => {
                 </div>    
             </div>     
             <div className='render-pdf'>
-                <RenderPDF/>
+                <RenderPDF filterData={filterData}/>
             </div>
         </div>
     )
