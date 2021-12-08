@@ -55,7 +55,7 @@ const RenderPDF = ({filterData}) => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Total: $123.32</td>
+                            <td>Total: ${inv.grand_total}</td>                           
                         </tr>
                     </tbody>
                 </table>

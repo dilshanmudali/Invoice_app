@@ -7,7 +7,7 @@ class CreateOrderdups < ActiveRecord::Migration[6.1]
       t.decimal :product_price
       t.integer :order_quantity
       t.decimal :order_total
-      
+ 
       t.timestamps
     end
   end

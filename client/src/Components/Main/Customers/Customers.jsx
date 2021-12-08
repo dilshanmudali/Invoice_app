@@ -7,6 +7,7 @@ const Customers = ({customers, submitCustomer, userId, handleDelcust}) => {
         "user_id" : userId,
         "customer_name": "",
         "customer_contact": "",
+        "customer_email" : "",
         "customer_address": ""
     })
 
@@ -24,6 +25,7 @@ const Customers = ({customers, submitCustomer, userId, handleDelcust}) => {
             "user_id" : userId,
             "customer_name": "",
             "customer_contact": "",
+            "customer_email" : "",
             "customer_address": ""
         })
     }
@@ -45,10 +47,23 @@ const Customers = ({customers, submitCustomer, userId, handleDelcust}) => {
                 <span className='customer-placeholder'>
                     Customer Name
                 </span>
-            </label>   
+            </label> 
+            <label className='customer-custom-field'>      
+                <input type="email" 
+                name="customer_email"
+                autoComplete = 'off' 
+                required = {true}
+                className="customer-email"
+                value = {addCustomer.customer_email}
+                onChange={handleChange}
+                />
+                <span className='customer-placeholder'>
+                    Customer Email
+                </span>
+            </label>     
             <label className='customer-custom-field'>      
                 <input type="tel" 
-                pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 required
                 name="customer_contact"
                 autoComplete = 'off' 
@@ -58,8 +73,7 @@ const Customers = ({customers, submitCustomer, userId, handleDelcust}) => {
                 />
                 <span className='customer-placeholder'>
                     Contact:
-                </span>
-                
+                </span>              
             </label>    
             <small>Format: 123-456-7890</small>     
             <div className='customer-address-custom-field'>   

@@ -3,6 +3,7 @@ import RenderPDF from './RenderPDF'
 import {RiBillLine} from 'react-icons/ri'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
+import { parseISO } from 'date-fns'
 
 const Transactions = () => {
 
@@ -21,13 +22,11 @@ const Transactions = () => {
     },[])
 
     const onChange = dateIn => {
-        // setDate(dateIn)
-        let options = {month:'2-digit', day:'2-digit', year:'numeric'}
-        const dateF = dateIn.toLocaleDateString('en-US', options)
         const setInvoiceDate = invoice.filter(inv => {
-            let date = inv.created_at.slice(0,10).replaceAll('-','/')
-            let newDate = date.slice(5) + '/' + date.slice(0,4)
-            return newDate === dateF
+            let date = parseISO(inv.created_at).toLocaleDateString()
+            // console.log(date)
+            // console.log(dateIn.toLocaleDateString())
+            return date === dateIn.toLocaleDateString()
         })
         setInvByDate(setInvoiceDate)
     }

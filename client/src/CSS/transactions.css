@@ -1,12 +1,10 @@
 .render-transactions-container{
-    padding: 46px;
-    width: 20vw;
-    display: grid;
+    padding: 29px;
     background-color: #fff;
     align-content: space-between;
     font-size: 1.2rem;
     box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
-    height: 64vh;
+    height: 69vh;
 }
 
 .transactions-container{
@@ -165,8 +163,7 @@
 
 .transactions{
     overflow-y: auto;
-    /* height: 65vh; */
-    height: 38vh;
+    height: 20vh;
 }
 
 /* .transactions button{

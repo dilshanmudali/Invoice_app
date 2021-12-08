@@ -200,7 +200,10 @@ function App(){
       fetch(`/invoices/${sessionInv}`, {
         method: 'PATCH',
         headers: {'Content-Type' : 'application/json'},
-        body: JSON.stringify({complete: true})
+        body: JSON.stringify({
+          grand_total : grandTotal,
+          complete: true
+        })
       })
       .then(r => r.json())
       .then(updateInv => {

@@ -5,6 +5,7 @@ class CreateInvoices < ActiveRecord::Migration[6.1]
       t.string :organization_name
       t.integer :invoice_num
       t.boolean :complete, null:false, default: false
+      t.decimal :grand_total, default: 0, null: false
       t.timestamps
     end
   end

@@ -11,11 +11,17 @@ Category.destroy_all
 Product.destroy_all
 Customer.destroy_all
 
-user2 = User.create(organization_name: 'CDCompany', username:'User2', email: 'user1@email.com', password: '123')
+user1 = User.create(organization_name: 'Amazon2.0', username:'Dilshan', email: 'Dilshan@email.com', password: '123password')
 
-category1 = Category.create(category_name: 'Category1', user_id: 1)
+category1 = Category.create(category_name: 'Beverages', user_id: 1)
 
-product1 = Product.create(product_name:'p1', product_description: 'p1 is an awesome product', product_price: 3.99, product_quantity: 2, category_id: 1)
+product1 = Product.create(product_name:'Nuka cola', product_description: 'Most popular soda never made', product_price: 1.58, product_quantity: 50, category_id: 1)
 
-customer1 = Customer.create(customer_name: 'customer1', customer_contact: '123-345-123', customer_address: '123 way south somewhere, Earth')
+customer1 = Customer.create(customer_name: 'Dilshan', customer_contact: '794-124-1212', customer_email: 'dilshan@gmail.com', customer_address: '14132 Air and Space, Museaum pkway, somewhere, AB 2015 United States')
 
+
+category2 = Category.create(category_name: 'Snacks', user_id: 1)
+
+product2 = Product.create(product_name:'Potato chips', product_description: 'Its just potato chips', product_price: 2.99, product_quantity: 70, category_id: 2)
+
+customer2 = Customer.create(customer_name: 'Quang', customer_contact: '725-134-1242', customer_email: 'quang@email.com', customer_address: '1234 Somewhere, Houston, TX United States')
