@@ -21,6 +21,11 @@ function App(){
   const [ordersCopy, setOrdersCopy] = useState([])
   const [invoice, setInvoice] = useState([])
   const [sessionInv, setSessionInv] = useState([])
+  const [homeState, setHomeState] = useState({
+    total_revenue : 0,
+    total_orders : 0,
+    total_products : 0
+  })
 
 
 // Initial user fetch
@@ -38,11 +43,27 @@ function App(){
           setOrders(user.orders)
           setOrdersCopy(user.orderdups)
           setInvoice(user.invoices)
+          
+          const totalProducts = user.products.reduce((a, prod) => {
+            return a + prod.product_quantity 
+          },0)
+          const totalOrders = user.invoices.filter(inv => inv.complete === true)
+          const totalRev = totalOrders.reduce((p, ord) => {
+            return p + parseFloat(ord.grand_total)
+          },0)
+
+          setHomeState({
+            total_products: totalProducts,
+            total_orders: totalOrders.length,
+            total_revenue: totalRev
+          })     
+          
         }) 
       }
     })  
      
   },[])
+  
 
 
   if(!user) return <Login onLogin={setUser}/>
@@ -85,6 +106,7 @@ function App(){
     .then(newProduct => {
       setProducts([...products, newProduct])
     })
+    
   }
 
   //handle order submit and update product quantity
@@ -242,12 +264,14 @@ function App(){
         <main style={showbar ? {marginLeft:'250px'} : {marginLeft:'60px'}}>
         <Switch>
           
-            <Route path='/' exact={true} component={Home} />
+            <Route path='/' exact={true}> 
+                <Home homeState={homeState}/>
+            </Route>
             <Route path='/category'>
               <AddCategory category={category} userId={user.id} submitCategory={submitCategory} handleDelCategory={handleDelCategory}/>
             </Route>
             <Route path='/products'>
-              <Products products={products} handleDelProd={handleDelProd} category={category} submitProduct={submitProduct} />
+              <Products products={products} handleDelProd={handleDelProd} category={category} submitProduct={submitProduct}/>
             </Route>
             <Route path='/customers'>
               <Customers customers={customers} submitCustomer={submitCustomer}

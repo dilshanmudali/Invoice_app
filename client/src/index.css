@@ -34,7 +34,7 @@ code {
 
 main{  
   height: 100vh;
-  background-color: #e8e8f1;
+  background-color: #f1f1fae0;
   transition: 0.5s;
   grid-column: 1/3;
 }

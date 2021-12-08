@@ -24,8 +24,6 @@ const Transactions = () => {
     const onChange = dateIn => {
         const setInvoiceDate = invoice.filter(inv => {
             let date = parseISO(inv.created_at).toLocaleDateString()
-            // console.log(date)
-            // console.log(dateIn.toLocaleDateString())
             return date === dateIn.toLocaleDateString()
         })
         setInvByDate(setInvoiceDate)
