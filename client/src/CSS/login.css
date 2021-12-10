@@ -7,25 +7,36 @@
     color: rgb(22, 22, 22);
     z-index: 0;
     width: 100%;
-    height: 100vh;
+    height: 92vh;
 }
+
+.svg-1{
+    position: absolute;
+    width: 100vw;
+    bottom: 0;
+}
+.svg-2{
+    height: 0vh;
+}
+/* .curved {
+    background: red;
+    color: #fff;
+    text-align: center;
+} */
+
+
+.login-container{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
 
 .auth-card{
-    width: 416px;
-    height: 500px;
-    box-shadow: 0 0 40px 20px rgb(0 0 0 / 60%);
-}
-
-.video-container{
-    position: absolute;
-    width: 100%;
-    left: 50%;
-    top: 50%;
-    height: 100%;
-    object-fit: cover;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-    opacity: 0.9;
+    width: 644px;
+    height: 547px;
+    box-shadow: 0px 1px 0px 0px rgba(9,30,66,.25);
 }
 
 .inner-card{
@@ -36,26 +47,33 @@
 
 .card-front, .card-back{
     position: absolute;
-    width: 100%;
+    width: 89%;
+    border-radius: 47px;
+    box-shadow: 0px 4px 6px 0px rgb(114 69 203), 0px 1px 3px 0px rgb(114 69 203);
     height: 100%;
     background-position: center center;
     background-size: cover;
-    background-image: linear-gradient(rgb(255 255 255 / 44%), rgb(56 29 111));
+    /* background-image: linear-gradient(rgb(255 255 255 / 44%), rgb(56 29 111)); */
     padding: 55px;
     box-sizing: border-box; 
     backface-visibility: hidden;
+    z-index: 1;
 }
 
 
 .auth-card h2{
-    color:rgb(129 35 212);
+    color: rgb(129 35 212);
     font-weight: 700;
-    font-size: 2em;
+    font-size: 26px;
+    border-radius: 17px;
+    padding: 10px;
+    box-shadow: rgb(114 69 203) 0px 0px 0px 0px, rgb(114 69 203) 0px 0px 0px 0px, rgb(114 69 203) 0px 4px 6px -1px, rgb(114 69 203) 0px 2px 4px -1px;
     text-align: center;
     margin-bottom: 20px;
+    width: 45%;
 }
 
-.input-box{
+/* .input-box{
     width: 100%;
     background: transparent;
     border: 1px solid #fff;
@@ -72,14 +90,82 @@
 .input-box::placeholder{
     color: #fff;
     font-size: 15px;
+} */
+
+
+.input-box{
+    
+    box-shadow: inset #7245cb 0 0 0 2px;
+    border: 0;
+    background: rgb(135 85 233 / 3%);
+    -webkit-appearance: none;
+    appearance: none;
+    width: 97%;
+    margin-bottom: 11px;
+    position: relative;
+    border-radius: 20px;
+    padding: 9px 12px;
+    line-height: 1.4;
+    color: rgb(0, 0, 0);
+    font-size: 21px;
+    font-weight: 400;
+    height: 40px;
+    transition: all .2s ease;
+
+}
+
+.input-box:focus::placeholder{
+    color: transparent;
+}
+
+.input-box::placeholder{
+    color: rgb(91 111 136);
+    transition: color 0.5s ease;
+}
+
+.input-box:hover{
+    box-shadow: 0 0 0 0 #fff inset, #785be0 0 0 0 2px;
+}
+.input-box:focus{
+    background: #fff;
+    outline: 0;
+    box-shadow: 0 0 0 0 #fff inset, #7245cb 0 0 0 3px;
 }
 
 
-.auth-container button{
+/* .input-box{  
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: rgb(248 248 251);
+    border: 2px solid rgb(223, 223, 226);
+    font-family: inherit;
+    font-size: inherit;
+    text-align: center;
+    outline: none;
+    border-color: rgb(161 144 194);
+    background-image:  linear-gradient(
+        180deg,#fff,#f5f5fa);
+    box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
+}
+
+
+.input-box:hover{  
+    border-color: rgb(3, 3, 3);
+    transition: border-color 0.5s ease-in;
+}
+
+.input-box:focus{  
+    border-color:rgb(170, 168, 207);
+    transition: border-color 0.5s ease;
+ } */
+
+/* .auth-container button{
     width: 100%;
     background: transparent;
     border: 1px solid #fff;
-    margin: 35px 0 10px;
+    margin: 10px 0 10px;
     height: 32px;
     font-size: 15px;
     border-radius: 20px;
@@ -88,13 +174,37 @@
     outline: none;
     color: #fff;
     cursor: pointer;
+} */
+
+.auth-container button{
+    
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+    border: none;
+    padding: 0 56px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 7px;
+    background-color: #7245cb;
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 14px 0 rgb(75 82 89 / 39%);
+    transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
+}
+
+.auth-container button:hover{
+    background: #a480ee;
+    box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
 }
 
 .signup-btn{
     position: relative;
 }
 
-.signup-btn::after{
+/* .signup-btn::after{
     content: '\27a4';
     color: #333;
     line-height: 32px;
@@ -106,13 +216,13 @@
     position: absolute;
     right: -1px;
     top: -1px;
-}
+} */
 
 .login-btn{
     position: relative;
 }
 
-.login-btn::after{
+/* .login-btn::after{
     content: '\27a4';
     color: #333;
     line-height: 32px;
@@ -124,7 +234,7 @@
     position: absolute;
     right: -1px;
     top: -1px;
-}
+} */
 
 .logo{
     width: 86px;
@@ -140,3 +250,32 @@
     display: flex;
     align-items: center;
 }
+
+.err-container{
+   
+    margin-left: 52px;
+    color: #7245cb;
+
+}
+
+.login-header{
+    position: absolute;
+    left: 11px;
+    top: 14px;
+    color: white;
+    font-family: "Avenir Next", sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    text-transform: uppercase;
+    font-style: italic;
+    letter-spacing: 0.05em;
+    display: inline-block;
+}
+
+.login-btn:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: attr(filter-content);
+    filter: url(#motion-blur-filter);
+  }

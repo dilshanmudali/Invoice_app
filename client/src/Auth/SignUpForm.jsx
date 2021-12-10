@@ -65,7 +65,7 @@ const SignUpForm = ({onLogin}) => {
             </button>
             {errors.map(err => {
                 return (
-                    <span key={err}>
+                    <span className="err-container" key={err}>
                         {err}
                     </span>
                 )

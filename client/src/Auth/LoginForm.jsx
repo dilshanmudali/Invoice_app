@@ -55,7 +55,7 @@ const LoginForm = ({onLogin}) => {
 
             </button>
             {/* {console.log(errors)} */}
-              <span>{errors}</span>
+              <span className="err-container">{errors}</span>
             {/* {errors.map(err => {
                 return (
                     <span key={err}>

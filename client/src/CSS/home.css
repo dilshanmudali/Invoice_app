@@ -1,8 +1,5 @@
 
-.home-main{
-    /* width: 100vw; */
-    height: 100vh;
-}
+
 
 
 .home-card-container{
@@ -52,4 +49,11 @@
 .card-body i{
     font-size: 87px;
     opacity: 0.5;
+}
+
+.canvas-div{
+    width: 306px;
+    position: relative;
+    bottom: 0px;
+    left: 52px;
 }

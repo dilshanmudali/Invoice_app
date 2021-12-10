@@ -1,8 +1,12 @@
 import React from 'react'
+import { parseISO } from 'date-fns'
 
 const RenderPDF = ({filterData}) => {
 
     const invoData = filterData.map(inv => {
+
+        let date = parseISO(inv.created_at).toLocaleDateString()
+
         return(                      
             <div className='pdf-container' key={inv.id}>
                 <div className='detail-container'>
@@ -24,7 +28,7 @@ const RenderPDF = ({filterData}) => {
                 </div>
                 <div className='inv-detail-container'>
                         <div>Invoice No: <span>{inv.invoice_num}</span></div>
-                        <div>Date: <span>12 05 2021</span></div>
+                        <div>Date: <span>{date}</span></div>
                 </div>
                 <div className="inv-table-container">
                     <table className='inv-table'>

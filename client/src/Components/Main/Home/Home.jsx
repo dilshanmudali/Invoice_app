@@ -9,8 +9,8 @@ const Home = ({totalProd, totalCustomers, userId}) => {
 
 const [totalRev, setTotalRev] = useState('')
 const [totalOrd, setTotalOrd] = useState('')
-const [chartData, setChartData] = useState('')
-    
+const [chartData, setChartData] = useState([])   
+
     useEffect(() =>{
         fetch('/invoices')
         .then(r => r.json())
@@ -19,14 +19,24 @@ const [chartData, setChartData] = useState('')
               const totalRev = totalOrders.reduce((p, ord) => {
                 return p + parseFloat(ord.grand_total)
               },0)   
-            setChartData(totalOrders) 
+            //   console.log(totalOrders)
+            //   let getData = totalOrders.reduce((acc, val) => {
+            //     //  let date = parseISO(val.created_at).toLocaleDateString()
+            //     if(acc[val.created_at] === undefined){
+            //         acc[val.created_at] = {date: parseISO(val.created_at).toLocaleDateString(), orders: val.grand_total}
+            //     }else{
+            //         acc[val.created_at].grand_total = acc[val.created_at].grand_total + val.grand_total
+            //     }
+            //     return acc
+            // },[])
+            setChartData(totalOrders)  
             setTotalRev(totalRev.toFixed(2)) 
             setTotalOrd(totalOrders.length)
         })
     },[userId])
 
-    console.log(totalOrd)
     return (
+        <>
         <div className="home-main">
             <div className="home-card-container">
                 <div className="card-body">
@@ -79,8 +89,10 @@ const [chartData, setChartData] = useState('')
                     </div>          
                 </div>
             </div>
-            <ChartRev chartData={chartData}/>
+           
         </div>
+            <ChartRev chartData={chartData}/>
+        </>
     )
 }
 
