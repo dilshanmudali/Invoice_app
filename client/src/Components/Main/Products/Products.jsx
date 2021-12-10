@@ -120,7 +120,8 @@ const Products = ({products, handleDelProd, category, submitProduct, setProducts
                     placeholder="Search..."
                     className = "addCategory"
                     />
-                    {suggestions && suggestions.map(suggestion => <div onClick={() => onSuggest(suggestion.category_name)} className="suggestions" key={suggestion.id}>{suggestion.category_name}</div>)}
+                    {suggestions && suggestions.map(suggestion => <div className="suggestion" onClick={() => onSuggest(suggestion.category_name)}  key={suggestion.id}>
+                        <p>{suggestion.category_name}</p></div>)}
                 </label>
             </div>        
             <div className='product-des-custom-field'>   

@@ -3,6 +3,7 @@ import {BsCart4, BsBagDash} from 'react-icons/bs'
 import {GiCoins} from 'react-icons/gi'
 import {FaUsers} from 'react-icons/fa'
 import ChartRev from './Chart'
+import CountUp from 'react-countup';
 
 
 const Home = ({totalProd, totalCustomers, userId}) => {
@@ -44,7 +45,9 @@ const [chartData, setChartData] = useState([])
                         <h3>
                            
                             <span className="currency">$</span>
-                            <span className="count">{totalRev}</span>
+                            <span className="count">
+                                <CountUp start={0} end={totalRev} delay={0} duration={1} decimals={2}/>
+                            </span>
                         </h3>
                         <p>Revenue</p>
                     </div>
@@ -56,7 +59,9 @@ const [chartData, setChartData] = useState([])
                     <div className="float-left">
                         <h3>
                             <span className="currency"></span>
-                            <span className="count">{totalOrd}</span>
+                            <span className="count">
+                                <CountUp start={0} end={totalOrd} delay={0} duration={1}/>
+                            </span>
                         </h3>
                         <p>Orders</p>
                     </div>
@@ -68,7 +73,9 @@ const [chartData, setChartData] = useState([])
                     <div className="float-left">
                         <h3>
                             <span className="currency"></span>
-                            <span className="count">{totalProd}</span>
+                            <span className="count">
+                            <CountUp start={0} end={totalProd} delay={0} duration={1}/>
+                            </span>
                         </h3>
                         <p>Products</p>
                     </div>
@@ -80,7 +87,9 @@ const [chartData, setChartData] = useState([])
                     <div className="float-left">
                         <h3>
                             <span className="currency"></span>
-                            <span className="count">{totalCustomers}</span>
+                            <span className="count">
+                                <CountUp start={0} end={totalCustomers} delay={0} duration={1}/>
+                            </span>
                         </h3>
                         <p>Customers</p>
                     </div>

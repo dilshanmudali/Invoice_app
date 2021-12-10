@@ -205,7 +205,7 @@ const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel, 
                                 </label>
                                 ) 
                                 : <div className='customer-invoice-info'>{customerInfo.customerName}</div> }
-                                {customerSuggestion && customerSuggestion.map((suggestion) => <div onClick={() => onCustomerSuggest(suggestion)} key={suggestion.id}>{suggestion.customer_name}</div>)} 
+                                {customerSuggestion && customerSuggestion.map((suggestion) => <div className='suggestions' onClick={() => onCustomerSuggest(suggestion)} key={suggestion.id}><p>{suggestion.customer_name}</p></div>)} 
                                 {/* <div>customer contact:{customerInfo.customerContact}</div>
                                 <div>customer address:{customerInfo.customerAddress}</div>
                                  <br/> */}
@@ -228,7 +228,7 @@ const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel, 
                             Product Name
                         </span> 
                     </label>
-                    {productSuggestion && productSuggestion.map((suggestion) => <div onClick={() => onProductSuggest(suggestion)} key={suggestion.id}>{suggestion.product_name}</div>)}
+                    {productSuggestion && productSuggestion.map((suggestion) => <div className='suggestions' onClick={() => onProductSuggest(suggestion)} key={suggestion.id}><p>{suggestion.product_name}</p></div>)}
                         {productInfo.productPrice ?
                         
                         <div className="order-price-container"> $ {productInfo.productPrice}
