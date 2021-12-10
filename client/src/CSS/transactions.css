@@ -225,8 +225,25 @@
     white-space: nowrap;
 }
 
+.search-transactions:focus::placeholder{
+    color: transparent;
+}
 
+.search-transactions::placeholder{
+    color: rgb(91 111 136);
+    transition: color 0.5s ease;
+}
 
-/*    background-color: Transparent;
-    background-repeat:no-repeat;
-    border: none;  - for buttons */
+.search-transactions{
+    width: 99%;
+    height: 57%;
+    border: 0px solid rgb(103 62 186);
+    font-size: inherit;
+    text-align: center;
+    border-color: rgb(161 144 194);
+    box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%)
+}
+
+.render-transactions-container div input{
+    height: 39px;
+}

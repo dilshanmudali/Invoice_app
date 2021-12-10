@@ -21,6 +21,11 @@ class CategoriesController < ApplicationController
         category.destroy
     end
    
+    def update 
+        category = Category.find(params[:id])
+        category.update(category_params)
+        render json: category
+    end
 
     private
 

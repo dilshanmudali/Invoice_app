@@ -34,7 +34,7 @@ code {
 
 main{  
   height: 100vh;
-  background-color: #f1f1fae0;
+  background-color: #ffffffe0;
   transition: 0.5s;
   grid-column: 1/3;
 }
@@ -125,4 +125,36 @@ main{
 .react-calendar__tile--active {
   background: #b692fd  !important;
   color: #fff4f4;
+}
+
+@media print{
+
+  header{
+    display: none !important;
+  }
+
+  .render-transactions-container{
+    display: none !important;
+  }
+
+  .sidebar{
+    display: none !important;
+  }
+
+  .print{
+    display: none;
+  }
+
+  .pdf-container{
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 15px;
+    font-size: 14px;
+    line-height: 18px;
+  }
 }

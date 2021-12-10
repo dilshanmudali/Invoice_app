@@ -41,7 +41,7 @@
 
 header button .sidebar_btn{
     z-index: 1;
-    color: #9266eb;
+    color: #ffffff;
     position: fixed;
     cursor: pointer;
     left: 254px;
@@ -51,7 +51,7 @@ header button .sidebar_btn{
 }
 
 header button .sidebar_btn:hover{
-    color: #794ad8;
+    color: #d3bdff;
 }
   
 

@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import RenderProducts from './RenderProducts'
 
-const Products = ({products, handleDelProd, category, submitProduct }) => {
+const Products = ({products, handleDelProd, category, submitProduct, setProducts }) => {
     const [text, setText] = useState('') 
     const [newProduct, setNewProduct] = useState({
         "product_name" : "",
@@ -143,7 +143,7 @@ const Products = ({products, handleDelProd, category, submitProduct }) => {
             </form>
         </div>     
         <div className='render-product'>
-            <RenderProducts products={products} handleDelProd={handleDelProd}/>
+            <RenderProducts products={products} handleDelProd={handleDelProd} setProducts={setProducts}/>
         </div>
     </div>
     )

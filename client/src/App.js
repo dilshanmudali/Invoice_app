@@ -21,12 +21,8 @@ function App(){
   const [ordersCopy, setOrdersCopy] = useState([])
   const [invoice, setInvoice] = useState([])
   const [sessionInv, setSessionInv] = useState([])
-  const [homeState, setHomeState] = useState({
-    total_revenue : 0,
-    total_orders : 0,
-    total_products : 0
-  })
-
+  const [totalProd, setTotalProd] = useState(0)
+  const [totalCustomers, setTotalCustomers] = useState(0)
 
 // Initial user fetch
   useEffect(() => {
@@ -47,23 +43,23 @@ function App(){
           const totalProducts = user.products.reduce((a, prod) => {
             return a + prod.product_quantity 
           },0)
-          const totalOrders = user.invoices.filter(inv => inv.complete === true)
-          const totalRev = totalOrders.reduce((p, ord) => {
-            return p + parseFloat(ord.grand_total)
-          },0)
 
-          setHomeState({
-            total_products: totalProducts,
-            total_orders: totalOrders.length,
-            total_revenue: totalRev
-          })     
-          
+
+          setTotalProd(totalProducts)     
+          setTotalCustomers(user.customers.length)
         }) 
       }
     })  
      
   },[])
   
+
+  useEffect(() =>{
+    const totalProducts = products.reduce((a, prod) => {
+      return a + prod.product_quantity 
+    },0)
+      setTotalProd(totalProducts)
+  },[products])
 
 
   if(!user) return <Login onLogin={setUser}/>
@@ -93,6 +89,7 @@ function App(){
     .then(newCustomer => {
       setCustomers([...customers, newCustomer]);
     })
+    setTotalCustomers(customers.length)
   }
 
 
@@ -106,11 +103,13 @@ function App(){
     .then(newProduct => {
       setProducts([...products, newProduct])
     })
-    
   }
 
+
+
+
   //handle order submit and update product quantity
-  const submitOrder = (newOrder, currentQuan, invId ) => {
+  const submitOrder = (newOrder, currentQuan, invId) => {
     const id = newOrder.product_id;
     const newQuantity = newOrder.order_quantity;  
     fetch('/orders', {
@@ -192,12 +191,6 @@ function App(){
       const orderLeft = orders.filter(ord => ord.customer_id !== customerId)
       setOrders(orderLeft)
     })
-
-    // fetch(`ordersDup/${customerId}`, {method: 'DELETE'})
-    // .then(() => {
-    //   const orderLeft = orders.filter(ord => ord.customer_id !== customerId)
-    //   setOrdersCopy(orderLeft)
-    // })
   }
 
   const submitInv = invInfo => {
@@ -247,7 +240,6 @@ function App(){
     })
    
 
-    console.log(customerId)
     fetch(`ordersFinal/${customerId}`, {method: 'DELETE'})
     .then(() => {
       const orderLeft = orders.filter(ord => ord.customer_id !== customerId)
@@ -265,25 +257,25 @@ function App(){
         <Switch>
           
             <Route path='/' exact={true}> 
-                <Home homeState={homeState}/>
+                <Home totalProd={totalProd} totalCustomers={totalCustomers} userId={user.id}/>
             </Route>
             <Route path='/category'>
-              <AddCategory category={category} userId={user.id} submitCategory={submitCategory} handleDelCategory={handleDelCategory}/>
+              <AddCategory category={category} userId={user.id} submitCategory={submitCategory} handleDelCategory={handleDelCategory} setCategory={setCategory} />
             </Route>
             <Route path='/products'>
-              <Products products={products} handleDelProd={handleDelProd} category={category} submitProduct={submitProduct}/>
+              <Products products={products} handleDelProd={handleDelProd} category={category} submitProduct={submitProduct} setProducts={setProducts}/>
             </Route>
             <Route path='/customers'>
-              <Customers customers={customers} submitCustomer={submitCustomer}
+              <Customers customers={customers} submitCustomer={submitCustomer} setCustomers={setCustomers}
               userId={user.id} handleDelcust={handleDelcust}/>
             </Route>
 
             <Route path='/orders'>
               <Invoice customers={customers} products={products} orders={orders} submitOrder={submitOrder}
-               handleOrderCancel={ handleOrderCancel} handleFinalize={handleFinalize} submitInv={submitInv}invoice={invoice}/>  
+               handleOrderCancel={ handleOrderCancel} handleFinalize={handleFinalize} submitInv={submitInv}invoice={invoice} userId={user.id}/>  
             </Route>   
             <Route path='/pdf'>
-              <Transactions />  
+              <Transactions userId={user.id}/>  
             </Route>      
         </Switch>
         </main>

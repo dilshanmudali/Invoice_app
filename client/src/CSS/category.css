@@ -124,4 +124,14 @@
     align-items: center; */
 }
 
-
+.cat-i{
+    width: 70%;
+    height: 100%;
+    padding: 7px;
+    background: rgb(248 248 251);
+    border: 2px solid rgb(223, 223, 226);
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+    border-color: rgb(161 144 194);
+}

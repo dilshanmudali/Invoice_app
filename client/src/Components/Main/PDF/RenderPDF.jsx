@@ -68,7 +68,7 @@ const RenderPDF = ({filterData}) => {
         <div className='render-pdf-container'>
             {invoData}
             <div className='print'>
-                <button>Print</button>
+                <button onClick={() => window.print()}>Print</button>
             </div>
         </div>
     )

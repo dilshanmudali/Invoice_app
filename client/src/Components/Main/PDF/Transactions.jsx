@@ -5,7 +5,7 @@ import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
 import { parseISO } from 'date-fns'
 
-const Transactions = () => {
+const Transactions = ({userId}) => {
 
     const [invoice, setInvoice] = useState([])
     const [filterData, setFilterData] = useState([])
@@ -16,16 +16,18 @@ const Transactions = () => {
         fetch('/invoices')
         .then(r => r.json())
         .then(data => {
-            const invData = data.filter(d => d.complete === true);
+            const invData = data.filter(d => d.complete === true && d.user_id === userId);
             setInvoice(invData);
         })
-    },[])
+    },[userId])
 
     const onChange = dateIn => {
         const setInvoiceDate = invoice.filter(inv => {
             let date = parseISO(inv.created_at).toLocaleDateString()
             return date === dateIn.toLocaleDateString()
         })
+
+        console.log(dateIn.toLocaleDateString())
         setInvByDate(setInvoiceDate)
     }
    
@@ -34,16 +36,36 @@ const Transactions = () => {
         setFilterData(pdfData)
     }
 
-    console.log(invByDate)
+    const handleSearch = e => {
+        if(e.target.value ){
+            const searchFilter = invByDate.filter(inv => {
+                return inv.customer.customer_name.toLowerCase().includes((e.target.value).toLowerCase())
+            })
+            setInvByDate(searchFilter)
+        }else{
+            setInvByDate(invoice)
+        }
+       
+    }
+
+ 
     
     return (
         <div className='transactions-container'>   
             <div className='render-transactions-container'> 
                 <div className='search-transactions'>
-                    <Calendar 
-                        
+                    <Calendar                       
                         onChange={onChange}
                         // value={date}
+                    />
+                </div>
+                <div>
+                    <input
+                        autoComplete = 'off' 
+                        className='search-transactions'
+                        type='search' 
+                        onChange={handleSearch}
+                        placeholder='Search..'
                     />
                 </div>
                 <div className='transactions'>

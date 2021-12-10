@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import RenderCustomers from './RenderCustomers'
 
-const Customers = ({customers, submitCustomer, userId, handleDelcust}) => {
+const Customers = ({customers, submitCustomer, userId, handleDelcust, setCustomers}) => {
 
     const [addCustomer, setAddCustomer] = useState({
         "user_id" : userId,
@@ -38,7 +38,7 @@ const Customers = ({customers, submitCustomer, userId, handleDelcust}) => {
             <label className='customer-custom-field'>      
                 <input type="text" 
                 name="customer_name"
-                autoComplete = 'off' 
+                autoComplete = 'off'
                 required = {true}
                 className="customer-name"
                 value = {addCustomer.customer_name}
@@ -51,7 +51,7 @@ const Customers = ({customers, submitCustomer, userId, handleDelcust}) => {
             <label className='customer-custom-field'>      
                 <input type="email" 
                 name="customer_email"
-                autoComplete = 'off' 
+                autoComplete = 'off'
                 required = {true}
                 className="customer-email"
                 value = {addCustomer.customer_email}
@@ -63,19 +63,17 @@ const Customers = ({customers, submitCustomer, userId, handleDelcust}) => {
             </label>     
             <label className='customer-custom-field'>      
                 <input type="tel" 
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
                 required
+                placeholder="contact"
                 name="customer_contact"
                 autoComplete = 'off' 
                 className="customer-contact"
                 value = {addCustomer.customer_contact}
                 onChange={handleChange}
-                />
-                <span className='customer-placeholder'>
-                    Contact:
-                </span>              
+                />          
             </label>    
-            <small>Format: 123-456-7890</small>     
+            <small>Format: 1234567890</small> 
             <div className='customer-address-custom-field'>   
                 <textarea type="text-area" 
                 className='customer-address'
@@ -95,7 +93,7 @@ const Customers = ({customers, submitCustomer, userId, handleDelcust}) => {
             </form>
         </div>     
         <div className='render-customer'>
-            <RenderCustomers customers={customers} handleDelcust={handleDelcust}/>
+            <RenderCustomers customers={customers} handleDelcust={handleDelcust} userId={userId} setCustomers={setCustomers}/>
         </div>
     </div>
     )

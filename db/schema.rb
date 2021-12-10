@@ -40,9 +40,11 @@ ActiveRecord::Schema.define(version: 2021_12_05_234750) do
     t.integer "invoice_num"
     t.boolean "complete", default: false, null: false
     t.decimal "grand_total", default: "0.0", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_invoices_on_customer_id"
+    t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
   create_table "orderdups", force: :cascade do |t|
@@ -96,6 +98,7 @@ ActiveRecord::Schema.define(version: 2021_12_05_234750) do
   add_foreign_key "categories", "users"
   add_foreign_key "customers", "users"
   add_foreign_key "invoices", "customers"
+  add_foreign_key "invoices", "users"
   add_foreign_key "orderdups", "customers"
   add_foreign_key "orderdups", "invoices"
   add_foreign_key "orderdups", "products"

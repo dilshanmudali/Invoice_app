@@ -21,6 +21,12 @@ class CustomersController < ApplicationController
         customer.destroy
     end
 
+    def update 
+        customer = Customer.find(params[:id])
+        customer.update(customer_params)
+        render json: customer
+    end
+
     private
 
     def customer_params

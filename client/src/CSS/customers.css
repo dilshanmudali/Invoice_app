@@ -179,8 +179,9 @@
     border-color:rgb(170, 168, 207);
     transition: border-color 0.5s ease;
  }
-
- 
+ /* #9266eb40 */
+/*  
+#9266eb6b
  .customer-custom-field .customer-placeholder{
     position: absolute;
     left: 12px;
@@ -192,17 +193,21 @@
         top 0.3s ease, 
         font-size 0.3s ease, 
         color 0.3s ease, 
+} */
+
+
+.customer-custom-field .customer-contact:focus::placeholder{
+    color: transparent;
 }
 
-.customer-custom-field .customer-contact:valid + .customer-placeholder,
-.customer-custom-field .customer-contact:focus + .customer-placeholder{
-   top: 20px;
-   font-size: 11px;
-   color: rgb(150, 137, 137); 
+.customer-custom-field .customer-contactinput::placeholder{
+    color: rgb(91 111 136);
+    transition: color 0.5s ease;
 }
 
 small{
     font-size: 11px;
+    white-space: nowrap;
     color: #261c35;
     padding: 13px;
 }
@@ -259,4 +264,16 @@ small{
    font-size: 11px;
    color: rgb(150, 137, 137);
    
+}
+
+.cus-i{
+    width: 70%;
+    height: 100%;
+    padding: 7px;
+    background: rgb(248 248 251);
+    border: 2px solid rgb(223, 223, 226);
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+    border-color: rgb(161 144 194);
 }

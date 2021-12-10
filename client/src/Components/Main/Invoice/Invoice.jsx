@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import RenderOrders from './RenderOrders'
 
-const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel, handleFinalize, submitInv, invoice}) => {
+const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel, handleFinalize, submitInv, invoice, userId}) => {
 
     
     //hide/show customer input
@@ -36,6 +36,7 @@ const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel, 
     //invoice state 
     const [invoiceInfo, setInvoiceInfo] = useState({
         "customer_id" : '',
+        "user_id" : userId,
         "invoice_num" : Math.floor(100000 + Math.random()*9000000),
         "organization_name" : '123Company'
     })
@@ -142,6 +143,13 @@ const Invoice = ({customers, products, orders, submitOrder,  handleOrderCancel, 
             productPrice: '',
             productQuantity: ''
         })
+          setNewOrder({
+            "customer_id" : customerInfo.customerId,
+            "product_id" : "",
+            "product_name" : "",
+            "order_quantity" : "",
+            "product_price" : "",
+            "order_total" : ""})
         setTotal(0)
     }
 
