@@ -5,18 +5,19 @@ Live demo for this application can be found at https://store-invo-app.herokuapp.
 
 <small><i><a>Table of contents</a></i></small>
 - [Getting Started](#getting-started)
+      - [install following dependencies](#install-following-dependencies)
 - [Features](#features)
 - [Technologies](#technologies)
-  * [Front-End](#front-end)
-  * [Back-End](#back-end)
+    + [Front-End](#front-end)
+    + [Back-End](#back-end)
 
 
 
+###An application made for store owners to keep track of inventory and create invoices for customers. 
 
-An application made for store owners to keep track of inventory and create invoices for customers. 
-![storeInvo](https://user-images.githubusercontent.com/35578002/146245498-1f5d2c7c-1598-4340-9789-325132d224b7.jpg)
+![Invo1](https://user-images.githubusercontent.com/35578002/146253669-a05cdafa-d828-4fac-b565-1d53d3c74182.gif)
 
-
+![Invo2](https://user-images.githubusercontent.com/35578002/146253681-e0623fa6-eca1-4dab-a6e5-efa094e8732d.gif)
 
 ## Features
 
