@@ -1,8 +1,22 @@
 # [STOREINVO](https://store-invo-app.herokuapp.com/)  
 
 
+Live demo for this application can be found at https://store-invo-app.herokuapp.com/
+
+##### Table of Contents
+- [Getting Started](#getting-started)
+- [Features](#features)
+- [Technologies](#technologies)
+  * [Front-End](#front-end)
+  * [Back-End](#back-end)
+
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 An application made for store owners to keep track of inventory and create invoices for customers. 
 ![storeInvo](https://user-images.githubusercontent.com/35578002/146245498-1f5d2c7c-1598-4340-9789-325132d224b7.jpg)
+
+
 
 ## Features
 
