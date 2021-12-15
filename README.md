@@ -57,12 +57,16 @@ Live demo for this application can be found at https://store-invo-app.herokuapp.
  
 1. Clone the repo
 
- ```git@github.com:dilshanmudali/Invoice_app.git```
+ ```
+ git@github.com:dilshanmudali/Invoice_app.git
+ ```
 
 2. Set up Client
 
  ##### install following dependencies
- ```npm install --prefix client```
+ ```
+ npm install --prefix client
+ ```
  
 - please visit the docs for these packages incase they are outdated
 
@@ -77,12 +81,16 @@ Live demo for this application can be found at https://store-invo-app.herokuapp.
 
  Make sure to install the latest versions of bundler and rails 
  
- ```gem install bundler```
- ```gem install rails```
+ ```
+ gem install bundler
+ gem install rails
+ ```
 
- ```  bundle install ```
- ```  rails db:create```
- ```  rails db:migrate db:seed ```
+ ```  
+ bundle install 
+ rails db:create
+ rails db:migrate db:seed 
+ ```
  
 4. Start application
 
