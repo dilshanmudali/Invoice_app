@@ -6,6 +6,8 @@ Live demo for this application can be found at https://store-invo-app.herokuapp.
 <small><i><a>Table of contents</a></i></small>
 - [Getting Started](#getting-started)
       - [install following dependencies](#install-following-dependencies)
+- [Preview](#preview)
+- [Relationship Diagram](#relationship-diagram)
 - [Features](#features)
 - [Technologies](#technologies)
     + [Front-End](#front-end)
@@ -17,7 +19,7 @@ Live demo for this application can be found at https://store-invo-app.herokuapp.
 
 ## Preview
 
-![image](https://user-images.githubusercontent.com/35578002/146256420-afc82961-cad8-4b3f-bfb0-37e9832391fc.png)
+![image](https://user-images.githubusercontent.com/35578002/146257260-17087794-9a0a-4770-9821-a80b9b37f762.png)
 
 ![Invo1](https://user-images.githubusercontent.com/35578002/146253669-a05cdafa-d828-4fac-b565-1d53d3c74182.gif)
 
