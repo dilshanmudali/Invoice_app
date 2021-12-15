@@ -15,7 +15,7 @@ Live demo for this application can be found at https://store-invo-app.herokuapp.
 
 
 
-### An application made for store owners to keep track of inventory and create invoices for customers. 
+### A full stack web application made for store owners to keep track of inventory and create invoices for customers. 
 
 ## Preview
 
