@@ -262,15 +262,15 @@ function App(){
             <Route path='/category'>
               <AddCategory category={category} userId={user.id} submitCategory={submitCategory} handleDelCategory={handleDelCategory} setCategory={setCategory} />
             </Route>
-            <Route path='/products'>
+            <Route path='/product'>
               <Products products={products} handleDelProd={handleDelProd} category={category} submitProduct={submitProduct} setProducts={setProducts}/>
             </Route>
-            <Route path='/customers'>
+            <Route path='/customer'>
               <Customers customers={customers} submitCustomer={submitCustomer} setCustomers={setCustomers}
               userId={user.id} handleDelcust={handleDelcust}/>
             </Route>
 
-            <Route path='/orders'>
+            <Route path='/order'>
               <Invoice customers={customers} products={products} orders={orders} submitOrder={submitOrder}
                handleOrderCancel={ handleOrderCancel} handleFinalize={handleFinalize} submitInv={submitInv}invoice={invoice} userId={user.id}/>  
             </Route>   

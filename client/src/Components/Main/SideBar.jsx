@@ -15,9 +15,9 @@ const SideBar = ({showbar}) => {
         </center> */}
         <NavLink to='/' exact={true} activeClassName='is-active'><ImHome /> <span>Home</span></NavLink>
         <NavLink to='/category' activeClassName='is-active'><BiCategory/> <span>Category</span></NavLink>
-        <NavLink to='/products' activeClassName='is-active'><RiShoppingBag3Line /> <span>Products</span></NavLink>
-        <NavLink to='/customers' activeClassName='is-active'><IoIosPeople /> <span>Customers</span></NavLink>
-        <NavLink to='/orders' activeClassName='is-active'><RiBillLine/> <span>Invoice</span></NavLink>
+        <NavLink to='/product' activeClassName='is-active'><RiShoppingBag3Line /> <span>Products</span></NavLink>
+        <NavLink to='/customer' activeClassName='is-active'><IoIosPeople /> <span>Customers</span></NavLink>
+        <NavLink to='/order' activeClassName='is-active'><RiBillLine/> <span>Invoice</span></NavLink>
         <NavLink to='/pdf' activeClassName='is-active'><FaFileInvoiceDollar/> <span>Transactions</span></NavLink>
     </div>
     )
