@@ -77,17 +77,19 @@ Live demo for this application can be found at https://store-invo-app.herokuapp.
 
  Make sure to install the latest versions of bundler and rails 
  
- ```gem install bundler
-    gem install rails```
+ ```gem install bundler```
+ ```gem install rails```
 
- ```  bundle install
-      rails db:create
-      rails db:migrate db:seed```
+ ```  bundle install ```
+ ```  rails db:create```
+ ```  rails db:migrate db:seed ```
  
 4. Start application
 
- ```rails s - start server
-  npm start --prefix client - start client```
+ ```
+  rails s - start server
+  npm start --prefix client - start client
+ ```
  
  Application is set to start at localhost:3000
  
