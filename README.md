@@ -65,10 +65,13 @@ Live demo for this application can be found at https://store-invo-app.herokuapp.
  `npm install --prefix client`
  
 - please visit the docs for these packages incase they are outdated
+
+```
     "date-fns": "^2.27.0",
     "react-calendar": "^3.5.0",
     "react-chartjs-2": "^4.0.0",
     "react-countup": "^6.1.0"
+```
     
 3. Set up Server
 
