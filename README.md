@@ -32,11 +32,11 @@ An application made for store owners to keep track of inventory and create invoi
 
 ## Technologies
 
-### Front-End
+#### Front-End
 
 - React
 
-### Back-End
+#### Back-End
 
 - Ruby on Rails
 - PostgreSQL
@@ -44,5 +44,15 @@ An application made for store owners to keep track of inventory and create invoi
 ## Getting Started
  
 1. Clone the repo
+
+`git@github.com:dilshanmudali/Invoice_app.git`
+
+2. Set up 
+
+install following dependencies
+`bundle install
+ rails db:create
+ npm install --prefix client`
+
 
   
