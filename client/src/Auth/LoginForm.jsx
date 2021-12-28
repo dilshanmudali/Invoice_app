@@ -2,6 +2,11 @@ import React, {useState} from 'react'
 
 const LoginForm = ({onLogin}) => {
 
+    // const [testLogin, setTestLogin] = useState({
+    //   username: '',
+    //   password: ''
+    // })
+
     const [errors, setErrors] = useState([])
     const [login, setLogin] = useState({
         username: '',
@@ -37,6 +42,25 @@ const LoginForm = ({onLogin}) => {
         });
     }
 
+    const handleTest = () => {
+      fetch("/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: 'recruiter',
+          password: '123456'
+        }),
+      }).then((r) => {
+        if (r.ok) {
+          r.json().then((user) => onLogin(user));
+        } else {
+          r.json().then((error) => setErrors(error.error));
+        }
+      });
+    }
+
     return (
         <form onSubmit={handleSubmit}>
             <h2>LOGIN</h2>
@@ -57,12 +81,14 @@ const LoginForm = ({onLogin}) => {
             {/* {console.log(errors)} */}
               <span className="err-container">{errors}</span>
             {/* {errors.map(err => {
-                return (
-                    <span key={err}>
-                        {err}
-                    </span>
+              return (
+                <span key={err}>
+                {err}
+                </span>
                 )
-                })} */}
+              })} */}
+            
+              <button style={{backgroundColor: '#3e374c'}} onClick={() =>handleTest()}>Recruiter Login</button>
         </form>
     )              
 }
