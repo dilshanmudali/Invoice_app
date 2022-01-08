@@ -1,0 +1,279 @@
+.customer-container{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.customer-form-container{
+    padding: 46px;
+    background-color: #fff;
+    display: grid;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
+}
+
+.render-customer-container{
+    background-color: rgb(224, 224, 224);
+    width: 50vw;
+    height: 72vh;
+    padding: 20px;
+    overflow-y: auto;
+    text-align: center;
+    font-size: 0.9rem;
+    background-color: white;
+    box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
+}
+
+/* start  */
+
+.add-customer-form{
+    padding: 8px;
+    width: 19rem;
+    height: 36px;
+}
+
+.add-customer-form .customer-name{  
+    width: 98%;
+    height: 100%;
+    background: rgb(248 248 251);
+    border: 2px solid rgb(223, 223, 226);
+    font-family: inherit;
+    font-size: inherit;
+    text-align: center;
+    border-color: rgb(161 144 194);
+    outline: none;
+    background-image:  linear-gradient(
+        180deg,#fff,#f5f5fa);
+    box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);;
+}
+
+
+.add-customer-form .customer-name:hover{  
+    border-color: rgb(3, 3, 3);
+    transition: border-color 0.5s ease-in;
+}
+
+.add-customer-form .customer-name:focus{  
+    border-color:rgb(170, 168, 207);
+    transition: border-color 0.5s ease;
+ }
+
+ .add-customer-form .customer-email{  
+    margin-top: 10px;
+    width: 74%;
+    height: 100%;
+    background: rgb(248 248 251);
+    border: 2px solid rgb(223, 223, 226);
+    font-family: inherit;
+    font-size: inherit;
+    text-align: center;
+    border-color: rgb(161 144 194);
+    outline: none;
+    background-image:  linear-gradient(
+        180deg,#fff,#f5f5fa);
+    box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);;
+}
+
+
+.add-customer-form .customer-email:hover{  
+    border-color: rgb(3, 3, 3);
+    transition: border-color 0.5s ease-in;
+}
+
+.add-customer-form .customer-email:focus{  
+    border-color:rgb(170, 168, 207);
+    transition: border-color 0.5s ease;
+ }
+
+.customer-custom-field .customer-email:valid + .customer-placeholder,
+.customer-custom-field .customer-email:focus + .customer-placeholder{
+   top: 20px;
+   font-size: 11px;
+   color: rgb(150, 137, 137);  
+}
+
+
+ .customer-custom-field{
+     position: relative;
+     font-size: inherit;
+     padding-top: 20px;
+     margin-bottom: 5px;
+ }
+
+ .customer-custom-field .customer-placeholder{
+    position: absolute;
+    left: 12px;
+    top: calc(45% + 10px);
+    white-space: nowrap;
+    transform: translateY(-40%);
+    color: rgb(91, 111, 136);
+    transition: 
+        top 0.3s ease, 
+        font-size 0.3s ease, 
+        color 0.3s ease, 
+}
+
+.customer-custom-field .customer-name:valid + .customer-placeholder,
+.customer-custom-field .customer-name:focus + .customer-placeholder{
+   top: 20px;
+   font-size: 11px;
+   color: rgb(150, 137, 137);  
+}
+
+.add-customer-form button{  
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+    border: 1px solid #1d1c1d4d;
+    font-weight: 700;
+    background: #a885e3;
+    padding: 4px 8px 1px;
+    font-size: 13px;
+    border-radius: 4px;
+    color: #fff;
+    height: 28px;
+    min-width: 56px;
+    transition: all 80ms linear;
+    margin-right: 15px;
+}
+
+.add-customer-form button:hover{
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 8%);
+    background: rgba(248,248,248,1);
+    color:black;
+    transition: all 0.5s ease-in-out;
+}
+
+.customer-form-container button{
+    display: flex;
+}
+
+
+/* contact  */
+
+.add-customer-form .customer-contact{  
+    width: 74%;
+    height: 100%;
+    background: rgb(248 248 251);
+    border: 2px solid rgb(223, 223, 226);
+    font-family: inherit;
+    font-size: inherit;
+    text-align: center;
+    border-color: rgb(161 144 194);
+    outline: none;
+    background-image:  linear-gradient(
+        180deg,#fff,#f5f5fa);
+    box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
+    margin-top: 10px;
+}
+
+
+.add-customer-form .customer-contact:hover{  
+    border-color: rgb(3, 3, 3);
+    transition: border-color 0.5s ease-in;
+}
+
+.add-customer-form .customer-contact:focus{  
+    border-color:rgb(170, 168, 207);
+    transition: border-color 0.5s ease;
+ }
+ /* #9266eb40 */
+/*  
+#9266eb6b
+ .customer-custom-field .customer-placeholder{
+    position: absolute;
+    left: 12px;
+    top: calc(45% + 10px);
+    white-space: nowrap;
+    transform: translateY(-40%);
+    color: rgb(91, 111, 136);
+    transition: 
+        top 0.3s ease, 
+        font-size 0.3s ease, 
+        color 0.3s ease, 
+} */
+
+
+.customer-custom-field .customer-contact:focus::placeholder{
+    color: transparent;
+}
+
+.customer-custom-field .customer-contactinput::placeholder{
+    color: rgb(91 111 136);
+    transition: color 0.5s ease;
+}
+
+small{
+    font-size: 11px;
+    white-space: nowrap;
+    color: #261c35;
+    padding: 13px;
+}
+
+/* Description */
+
+.customer-address-custom-field{
+    position: relative;
+    font-size: inherit;
+    padding-top: 20px;
+    margin-bottom: 5px;
+}
+
+.customer-address-custom-field textarea{
+    width: 98%;
+    height: 100%;
+    margin-top: -10px;
+    background: rgb(248 248 251);
+    border: 2px solid rgb(223, 223, 226);
+    font-family: inherit;
+    font-size: inherit;
+    text-align: center;
+    border-color: rgb(161 144 194);
+    outline: none;
+    background-image:  linear-gradient(
+        180deg,#fff,#f5f5fa);
+    box-shadow: 0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%);
+    resize: none;
+}
+
+.customer-address-custom-field textarea:hover{  
+    border-color: rgb(3, 3, 3);
+    transition: border-color 0.5s ease-in;
+}
+
+.customer-address-custom-field textarea:focus{  
+    border-color:rgb(170, 168, 207);
+    transition: border-color 0.5s ease;
+ }
+
+ .customer-address-custom-field .customer-address-placeholder{
+    position: absolute;
+    left: 12px;
+    top: calc(37% + 10px);
+    white-space: nowrap;
+    transform: translateY(-1%);
+    color: rgb(91, 111, 136);
+    transition: top 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+ }
+
+ .customer-address-custom-field textarea:valid + .customer-address-placeholder,
+.customer-address-custom-field textarea:focus + .customer-address-placeholder{
+   top: 30px;
+   font-size: 11px;
+   color: rgb(150, 137, 137);
+   
+}
+
+.cus-i{
+    width: 70%;
+    height: 100%;
+    padding: 7px;
+    background: rgb(248 248 251);
+    border: 2px solid rgb(223, 223, 226);
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+    border-color: rgb(161 144 194);
+}

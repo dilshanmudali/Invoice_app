@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from "react-router-dom"
 import './index.css';
-import './CSS/sidebar.css';
-import './CSS/header.css';
-import './CSS/category.css';  
-import './CSS/products.css';
-import './CSS/customers.css';
-import './CSS/orders.css';
-import './CSS/home.css';
-import './CSS/transactions.css';
-import './CSS/login.css'
+import './Styles/sidebar.css';
+import './Styles/header.css';
+import './Styles/category.css';  
+import './Styles/products.css';
+import './Styles/customers.css';
+import './Styles/orders.css';
+import './Styles/home.css';
+import './Styles/transactions.css';
+import './Styles/login.css'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 

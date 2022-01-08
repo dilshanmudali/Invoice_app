@@ -88,7 +88,7 @@ const LoginForm = ({onLogin}) => {
                 )
               })} */}
             
-              <button style={{backgroundColor: '#3e374c'}} onClick={() =>handleTest()}>Recruiter Login</button>
+              <button style={{backgroundColor: '#3e374c'}} onClick={() =>handleTest()}>Demo App</button>
         </form>
     )              
 }
