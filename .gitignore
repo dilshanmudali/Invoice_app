@@ -1,16 +1,11 @@
 
-### react ###
-.DS_*
-*.log
-logs
-**/*.backup.*
-**/*.back.*
-node_modules
+
 
 ###Ruby
+node_modules
 *.gem
 *.rbc
-/.config
+/config
 /coverage/
 /InstalledFiles
 /pkg/
