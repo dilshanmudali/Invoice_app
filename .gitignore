@@ -10,7 +10,7 @@ node_modules
 ###Ruby
 *.gem
 *.rbc
-/config/
+/.config
 /coverage/
 /InstalledFiles
 /pkg/
