@@ -1,12 +1,13 @@
 import { useState, useContext } from 'react';
 import globalContext from '../../../Context/globalContext';
 import RenderCustomers from './RenderCustomers';
-
+import useApiCall from '../../../hooks/use-fetch';
 const Customers = () => {
   const context = useContext(globalContext);
   const customers = context.customers;
   const setCustomers = context.setCustomers;
   const userId = context.user.id;
+  const { fetchData, isloading, error } = useApiCall();
   const [addCustomer, setAddCustomer] = useState({
     user_id: userId,
     customer_name: '',
@@ -22,14 +23,24 @@ const Customers = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    //setting new customer
-    fetch('/customers', {
+  const submitCustomerData = async () => {
+    const data = await fetchData('/customers', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(addCustomer),
-    })
+    });
+
+    if (error) {
+      console.log(error);
+    }
+
+    return data;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    //setting new customer
+    submitCustomerData()
       .then((r) => r.json())
       .then((newCustomer) => {
         setCustomers([...customers, newCustomer]);
@@ -50,6 +61,10 @@ const Customers = () => {
       setCustomers(custLeft);
     });
   };
+
+  if (isloading) {
+    return '...loading';
+  }
 
   return (
     <div className='customer-container'>
