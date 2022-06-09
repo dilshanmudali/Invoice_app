@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import RenderCategory from './RenderCategory';
-
-const AddCategory = ({ category, userId, setCategory }) => {
+import globalContext from '../../../Context/globalContext';
+const AddCategory = () => {
+  const context = useContext(globalContext);
+  const category = context.category;
+  const setCategory = context.setCategory;
+  const userId = context.user.id;
   const [addCategory, setAddCategory] = useState({
     category_name: '',
     user_id: userId,
@@ -27,6 +31,7 @@ const AddCategory = ({ category, userId, setCategory }) => {
       .then((newCategory) => {
         setCategory([...category, newCategory]);
       });
+
     setAddCategory({
       category_name: '',
       user_id: userId,

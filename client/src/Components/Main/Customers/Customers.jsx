@@ -1,7 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import globalContext from '../../../Context/globalContext';
 import RenderCustomers from './RenderCustomers';
 
-const Customers = ({ customers, userId, setCustomers }) => {
+const Customers = () => {
+  const context = useContext(globalContext);
+  const customers = context.customers;
+  const setCustomers = context.setCustomers;
+  const userId = context.user.id;
   const [addCustomer, setAddCustomer] = useState({
     user_id: userId,
     customer_name: '',
@@ -40,7 +45,6 @@ const Customers = ({ customers, userId, setCustomers }) => {
   };
 
   const handleDelcust = (id) => {
-    console.log(id, 'delete id');
     fetch(`customers/${id}`, { method: 'DELETE' }).then(() => {
       const custLeft = customers.filter((cust) => cust.id !== id);
       setCustomers(custLeft);

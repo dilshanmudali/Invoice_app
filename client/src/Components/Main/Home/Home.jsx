@@ -1,11 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import globalContext from '../../../Context/globalContext';
 import { BsCart4, BsBagDash } from 'react-icons/bs';
 import { GiCoins } from 'react-icons/gi';
 import { FaUsers } from 'react-icons/fa';
 import ChartRev from './Chart';
 import CountUp from 'react-countup';
 
-const Home = ({ totalProd, totalCustomers, userId }) => {
+const Home = () => {
+  const context = useContext(globalContext);
+  const totalProd = context.totalProd;
+  const totalCustomers = context.totalCustomers;
+  const userId = context.user.id;
   const [totalRev, setTotalRev] = useState('');
   const [totalOrd, setTotalOrd] = useState('');
   const [chartData, setChartData] = useState([]);

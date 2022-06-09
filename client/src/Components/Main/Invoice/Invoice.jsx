@@ -1,19 +1,20 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import globalContext from '../../../Context/globalContext';
 import RenderOrders from './RenderOrders';
 
-const Invoice = ({
-  customers,
-  products,
-  invoice,
-  userId,
-  setOrders,
-  orders,
-  setOrdersCopy,
-  ordersCopy,
-  setProducts,
-  setInvoice,
-  user,
-}) => {
+const Invoice = () => {
+  const context = useContext(globalContext);
+  const customers = context.customers;
+  const invoice = context.invoice;
+  const setOrders = context.setOrders;
+  const orders = context.orders;
+  const setProducts = context.setProducts;
+  const setOrdersCopy = context.setOrdersCopy;
+  const ordersCopy = context.ordersCopy;
+  const setInvoice = context.setInvoice;
+  const userId = context.user.id;
+  const user = context.user;
+  const products = context.products;
   //hide/show customer input
   const [customerInputVisible, setCustomerInputVisible] = useState(true);
   //customer States
@@ -49,7 +50,7 @@ const Invoice = ({
     customer_id: '',
     user_id: userId,
     invoice_num: Math.floor(100000 + Math.random() * 9000000),
-    organization_name: '123Company',
+    organization_name: '',
   });
 
   //customer handlers
@@ -178,7 +179,7 @@ const Invoice = ({
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         ...newOrder,
-        complete: false,
+        // complete: false,
         invoice_id: invId,
       }),
     })
@@ -204,6 +205,7 @@ const Invoice = ({
         setProducts(updateProdList);
       });
 
+    //clear states in form
     setProductInfo({
       productName: '',
       productPrice: '',
@@ -321,9 +323,6 @@ const Invoice = ({
                   <p>{suggestion.customer_name}</p>
                 </div>
               ))}
-            {/* <div>customer contact:{customerInfo.customerContact}</div>
-                                <div>customer address:{customerInfo.customerAddress}</div>
-                                 <br/> */}
             {customerInputVisible ? (
               <button>Create Invoice</button>
             ) : (

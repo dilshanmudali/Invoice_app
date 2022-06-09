@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import GlobalContext from './Context/globalContext';
 import Navigation from './Components/Header/Navigation';
 import SideBar from './Components/Main/SideBar';
 import Home from './Components/Main/Home/Home';
@@ -19,7 +20,6 @@ function App() {
   const [orders, setOrders] = useState([]);
   const [ordersCopy, setOrdersCopy] = useState([]);
   const [invoice, setInvoice] = useState([]);
-
   const [totalProd, setTotalProd] = useState(0);
   const [totalCustomers, setTotalCustomers] = useState(0);
 
@@ -52,7 +52,30 @@ function App() {
   if (!user) return <Login onLogin={setUser} />;
 
   return (
-    <>
+    <GlobalContext.Provider
+      value={{
+        user,
+        setUser,
+        showbar,
+        setShowBar,
+        category,
+        setCategory,
+        products,
+        setProducts,
+        customers,
+        setCustomers,
+        orders,
+        setOrders,
+        ordersCopy,
+        setOrdersCopy,
+        invoice,
+        setInvoice,
+        totalProd,
+        setTotalProd,
+        totalCustomers,
+        setTotalCustomers,
+      }}
+    >
       <div className='grid-container'>
         <Navigation setShowBar={setShowBar} setUser={setUser} />
         <SideBar showbar={showbar} />
@@ -62,48 +85,19 @@ function App() {
         >
           <Switch>
             <Route path='/' exact={true}>
-              <Home
-                totalProd={totalProd}
-                totalCustomers={totalCustomers}
-                userId={user.id}
-              />
+              <Home />
             </Route>
             <Route path='/category'>
-              <AddCategory
-                category={category}
-                userId={user.id}
-                setCategory={setCategory}
-              />
+              <AddCategory />
             </Route>
             <Route path='/product'>
-              <Products
-                products={products}
-                category={category}
-                setProducts={setProducts}
-              />
+              <Products />
             </Route>
             <Route path='/customer'>
-              <Customers
-                customers={customers}
-                setCustomers={setCustomers}
-                userId={user.id}
-              />
+              <Customers />
             </Route>
-
             <Route path='/order'>
-              <Invoice
-                user={user}
-                customers={customers}
-                products={products}
-                orders={orders}
-                invoice={invoice}
-                userId={user.id}
-                setOrders={setOrders}
-                setInvoice={setInvoice}
-                setOrdersCopy={setOrdersCopy}
-                ordersCopy={ordersCopy}
-                setProducts={setProducts}
-              />
+              <Invoice />
             </Route>
             <Route path='/pdf'>
               <Transactions userId={user.id} />
@@ -111,7 +105,7 @@ function App() {
           </Switch>
         </main>
       </div>
-    </>
+    </GlobalContext.Provider>
   );
 }
 

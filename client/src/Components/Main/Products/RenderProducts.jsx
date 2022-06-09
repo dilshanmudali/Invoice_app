@@ -8,12 +8,6 @@ const RenderProducts = ({ products, setProducts }) => {
     product_price: '',
     product_quantity: '',
   });
-  const handleDelProd = (proId) => {
-    fetch(`products/${proId}`, { method: 'DELETE' }).then(() => {
-      const prodLeft = products.filter((prod) => prod.id !== proId);
-      setProducts(prodLeft);
-    });
-  };
 
   const handleEditProd = (e, prodId) => {
     e.preventDefault();
@@ -60,6 +54,12 @@ const RenderProducts = ({ products, setProducts }) => {
     setEditProd(null);
   };
 
+  const handleDelProd = (proId) => {
+    fetch(`products/${proId}`, { method: 'DELETE' }).then(() => {
+      const prodLeft = products.filter((prod) => prod.id !== proId);
+      setProducts(prodLeft);
+    });
+  };
   return (
     <div className='render-products-container'>
       <form onSubmit={handleEditsubmit}>

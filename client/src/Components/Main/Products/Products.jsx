@@ -1,8 +1,14 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import globalContext from '../../../Context/globalContext';
 import RenderProducts from './RenderProducts';
 
-const Products = ({ products, category, setProducts }) => {
+const Products = () => {
+  const context = useContext(globalContext);
+  const category = context.category;
+  const products = context.products;
+  const setProducts = context.setProducts;
   const [text, setText] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
   const [newProduct, setNewProduct] = useState({
     product_name: '',
     product_description: '',
@@ -10,7 +16,7 @@ const Products = ({ products, category, setProducts }) => {
     product_quantity: '',
     category_id: '',
   });
-  const [suggestions, setSuggestions] = useState([]);
+
   const textChange = (text) => {
     let matches = [];
     if (text.length > 0) {
@@ -20,7 +26,7 @@ const Products = ({ products, category, setProducts }) => {
       });
     }
     setSuggestions(matches);
-    setText(text);
+    // setText(text);
   };
 
   const onSuggest = (categoryName) => {
@@ -52,6 +58,8 @@ const Products = ({ products, category, setProducts }) => {
       .then((newProduct) => {
         setProducts([...products, newProduct]);
       });
+
+    //clearing form inputs
     setNewProduct({
       product_name: '',
       product_description: '',
